@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Baza\BrokerBaze.cs" />
+    <Compile Include="Baza\GenerickiRepo.cs" />
+    <Compile Include="Baza\IGenerickiRepo.cs" />
     <Compile Include="Domen\Autor.cs" />
     <Compile Include="Domen\Biblioteka.cs" />
     <Compile Include="Domen\Bibliotekar.cs" />
