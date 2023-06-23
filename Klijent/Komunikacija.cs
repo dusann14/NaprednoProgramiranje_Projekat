@@ -35,7 +35,7 @@ namespace Klijent
         }
 
         public void PoveziSe()
-        {
+        {   
             soket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             soket.Connect("127.0.0.1", 9000);
             receiver = new Receiver(soket);

@@ -32,7 +32,15 @@ namespace Klijent
 
         public void OtvoriLoginFormu()
         {
-            Komunikacija.Instance.PoveziSe();
+            try
+            {
+                Komunikacija.Instance.PoveziSe();
+            }catch(Exception e)
+            {
+                MessageBox.Show("Nije uspelo povezivanje sa serverom");
+                return;
+            }
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FrmLogin frmLogin = loginKontroler.NapraviFrmLogin();
