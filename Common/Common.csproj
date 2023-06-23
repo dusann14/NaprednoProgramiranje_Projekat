@@ -56,6 +56,8 @@
     <Compile Include="Domen\StatusRezervacije.cs" />
     <Compile Include="Domen\Stavka.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SistemskeOperacije\AutorSO\VratiAutoreSO.cs" />
+    <Compile Include="SistemskeOperacije\BibliotekarSO\PromeniPodatkeBibliotekaraSO.cs" />
     <Compile Include="SistemskeOperacije\SistemskaOperacijaBaza.cs" />
     <Compile Include="Transfer\Odgovor.cs" />
     <Compile Include="Transfer\Operacije.cs" />
