@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Domen\Autor.cs" />
     <Compile Include="Domen\Biblioteka.cs" />
+    <Compile Include="Domen\Bibliotekar.cs" />
+    <Compile Include="Domen\Clan.cs" />
     <Compile Include="Domen\IEntitet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
