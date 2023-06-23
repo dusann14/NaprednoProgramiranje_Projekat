@@ -45,7 +45,9 @@
     <Compile Include="Domen\Biblioteka.cs" />
     <Compile Include="Domen\Bibliotekar.cs" />
     <Compile Include="Domen\Clan.cs" />
+    <Compile Include="Domen\ClanBiblioteka.cs" />
     <Compile Include="Domen\IEntitet.cs" />
+    <Compile Include="Domen\Knjiga.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
