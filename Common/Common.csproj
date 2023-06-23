@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transfer\Odgovor.cs" />
     <Compile Include="Transfer\Operacije.cs" />
+    <Compile Include="Transfer\Receiver.cs" />
+    <Compile Include="Transfer\Sender.cs" />
     <Compile Include="Transfer\Zahtev.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
