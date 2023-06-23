@@ -65,6 +65,12 @@
     <Compile Include="SistemskeOperacije\ClanBIbliotekaSO\VratiClanovePoImenuSO.cs" />
     <Compile Include="SistemskeOperacije\ClanBIbliotekaSO\VratiSveClanoveIzBibliotekeSO.cs" />
     <Compile Include="SistemskeOperacije\ClanSO\PromeniPodatkeClanaSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\DodajKnjiguSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\ObrisiKnjiguSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\PromeniKnjiguSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\VratiKnjigePoAutoruSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\VratiKnjigePoNaslovuSO.cs" />
+    <Compile Include="SistemskeOperacije\KnjigaSO\VratiSveKnjigeSO.cs" />
     <Compile Include="SistemskeOperacije\SistemskaOperacijaBaza.cs" />
     <Compile Include="Transfer\Odgovor.cs" />
     <Compile Include="Transfer\Operacije.cs" />
