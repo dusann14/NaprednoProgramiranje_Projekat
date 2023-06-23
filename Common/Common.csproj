@@ -71,6 +71,7 @@
     <Compile Include="SistemskeOperacije\KnjigaSO\VratiKnjigePoAutoruSO.cs" />
     <Compile Include="SistemskeOperacije\KnjigaSO\VratiKnjigePoNaslovuSO.cs" />
     <Compile Include="SistemskeOperacije\KnjigaSO\VratiSveKnjigeSO.cs" />
+    <Compile Include="SistemskeOperacije\LoginSO\LoginSO.cs" />
     <Compile Include="SistemskeOperacije\SistemskaOperacijaBaza.cs" />
     <Compile Include="Transfer\Odgovor.cs" />
     <Compile Include="Transfer\Operacije.cs" />
