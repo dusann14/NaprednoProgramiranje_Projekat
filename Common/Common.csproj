@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemskeOperacije\AutorSO\VratiAutoreSO.cs" />
     <Compile Include="SistemskeOperacije\BibliotekarSO\PromeniPodatkeBibliotekaraSO.cs" />
+    <Compile Include="SistemskeOperacije\BibliotekaSO\VratiSveBibliotekeSO.cs" />
     <Compile Include="SistemskeOperacije\SistemskaOperacijaBaza.cs" />
     <Compile Include="Transfer\Odgovor.cs" />
     <Compile Include="Transfer\Operacije.cs" />
