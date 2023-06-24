@@ -52,7 +52,7 @@ namespace Klijent
         {
 
             List<IEntitet> entiteti = new List<IEntitet>();
-            entiteti.Add(new Clan
+            entiteti.Add(new Common.Domen.Clan
             {
                 KorisnickoIme = korisnickoIme,
                 Lozinka = lozinka,
@@ -84,7 +84,7 @@ namespace Klijent
             return (Odgovor)receiver.Primi();
         }
 
-        internal Odgovor VratiClanovePoImenu(Clan clan, Biblioteka biblioteka)
+        internal Odgovor VratiClanovePoImenu(Common.Domen.Clan clan, Biblioteka biblioteka)
         {
             ClanBiblioteka cb = new ClanBiblioteka
             {
@@ -251,9 +251,9 @@ namespace Klijent
                 receiver.Primi();
                 soket.Close();
                 soket = null;
-            }else if(entitet is Clan)
+            }else if(entitet is Common.Domen.Clan)
             {
-                Clan clan = (Clan)entitet;
+                Common.Domen.Clan clan = (Common.Domen.Clan)entitet;
                 clan.Prijavljen = false;
                 Zahtev zahtev = new Zahtev
                 {
@@ -265,9 +265,111 @@ namespace Klijent
                 soket.Close();
                 soket = null;
             }
-
-            
-
         }
+
+        internal List<Biblioteka> VratiBibliotekeClana(Common.Domen.Clan clan)
+        {
+            ClanBiblioteka clanBiblioteka = new ClanBiblioteka
+            {
+                Clan = clan
+            };
+
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = clanBiblioteka,
+                Operacija = Operacije.VratiBibliotekeClana
+            };
+            sender.Posalji(zahtev);
+            Odgovor odgovor = (Odgovor)receiver.Primi();
+            return (List<Biblioteka>)odgovor.Rezultat;
+        }
+
+        internal Odgovor OtkaziClanstvo(Common.Domen.Clan clan, Biblioteka izabranaBiblioteka)
+        {
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = new ClanBiblioteka
+                {
+                    Clan = clan,
+                    Biblioteka = izabranaBiblioteka
+                },
+                Operacija = Operacije.OtkaziClanstvo
+            };
+            sender.Posalji(zahtev);
+            return (Odgovor)receiver.Primi();
+        }
+
+        internal Odgovor KreirajRezervaciju(Rezervacija rezervacija)
+        {
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = rezervacija,
+                Operacija = Operacije.KreirajRezervaciju
+            };
+            sender.Posalji(zahtev);
+            return (Odgovor)receiver.Primi();
+        }
+
+        internal Odgovor PromeniPodatkeClana(Common.Domen.Clan clan)
+        {
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = clan,
+                Operacija = Operacije.PromeniPodatkeClana
+            };
+            sender.Posalji(zahtev);
+            return (Odgovor)receiver.Primi();
+        }
+
+        internal Odgovor VratiRezervacijeClana(Common.Domen.Clan clan, Biblioteka izabranaBiblioteka)
+        {
+            Rezervacija rezervacija = new Rezervacija
+            {
+                Clan = clan,
+                Biblioteka = izabranaBiblioteka
+            };
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = rezervacija,
+                Operacija = Operacije.PrikaziSveRezervacije
+            };
+            sender.Posalji(zahtev);
+            return (Odgovor)receiver.Primi();
+        }
+
+        internal Odgovor UclaniSe(Common.Domen.Clan clan, Biblioteka izabranaBiblioteka)
+        {
+            ClanBiblioteka clanBiblioteka = new ClanBiblioteka
+            {
+                Clan = clan,
+                Biblioteka = izabranaBiblioteka,
+                DatumUclanjenja = DateTime.Now
+            };
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = clanBiblioteka,
+                Operacija = Operacije.UclaniSe
+            };
+            sender.Posalji(zahtev);
+            return (Odgovor)receiver.Primi();
+        }
+
+        internal List<Biblioteka> VratiBibliotekeClana(Domen.Clan clan)
+        {
+            ClanBiblioteka clanBiblioteka = new ClanBiblioteka
+            {
+                Clan = clan
+            };
+
+            Zahtev zahtev = new Zahtev
+            {
+                Objekat = clanBiblioteka,
+                Operacija = Operacije.VratiBibliotekeClana
+            };
+            sender.Posalji(zahtev);
+            Odgovor odgovor = (Odgovor)receiver.Primi();
+            return (List<Biblioteka>)odgovor.Rezultat;
+        }
+
     }
 }

@@ -150,7 +150,7 @@ namespace Klijent
             clanKontroler.FrmClan.SetPanel(kontrolerUCBiranjeB.NapraviUCBiranjeBiblioteke(clanKontroler));
         }
 
-        internal void OtvoriUCHome(ClanKontroler clanKontroler)
+        internal void OtvoriUCHomeClan(ClanKontroler clanKontroler)
         {
             clanKontroler.FrmClan.SetPanel(kontrolerUCHomeClan.NapraviUCHome(clanKontroler));
         }
@@ -160,7 +160,7 @@ namespace Klijent
             clanKontroler.FrmClan.SetPanel(kontrolerUCUclanjivanje.NapraviUCUclanjivanje(clanKontroler));
         }
 
-        internal void OtvoriUCProfil(ClanKontroler clanKontroler)
+        internal void OtvoriUCProfilClan(ClanKontroler clanKontroler)
         {
             clanKontroler.FrmClan.SetPanel(kontrolerUCProfilClan.NapraviUCProfil(clanKontroler));
         }
