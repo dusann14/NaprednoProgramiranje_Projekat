@@ -53,6 +53,48 @@
       <DependentUpon>FrmBibliotekar.cs</DependentUpon>
     </Compile>
     <Compile Include="Bibliotekar\Kontroler\BibliotekarKontroler.cs" />
+    <Compile Include="Bibliotekar\UserControls\UCClanovi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCClanovi.Designer.cs">
+      <DependentUpon>UCClanovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCDodajKnjigu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCDodajKnjigu.Designer.cs">
+      <DependentUpon>UCDodajKnjigu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCHome.Designer.cs">
+      <DependentUpon>UCHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCIzmeniKnjigu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCIzmeniKnjigu.Designer.cs">
+      <DependentUpon>UCIzmeniKnjigu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCObradjeneRezervacije.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCObradjeneRezervacije.Designer.cs">
+      <DependentUpon>UCObradjeneRezervacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCPristigleRezervacije.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCPristigleRezervacije.Designer.cs">
+      <DependentUpon>UCPristigleRezervacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCProfil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\UserControls\UCProfil.Designer.cs">
+      <DependentUpon>UCProfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +130,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Bibliotekar\Kontroler\KontroleriUC\" />
     <Folder Include="Clan\" />
   </ItemGroup>
   <ItemGroup>
