@@ -353,7 +353,6 @@ namespace Klijent
             sender.Posalji(zahtev);
             return (Odgovor)receiver.Primi();
         }
-
         internal Odgovor VratiBiblioteke()
         {
             Zahtev zahtev = new Zahtev
