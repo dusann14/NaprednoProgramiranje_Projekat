@@ -39,6 +39,7 @@ namespace Server.Obrada
                     {
                         Kontroler.Kontroler.Instance.PromeniPodatkeBibliotekara((Bibliotekar)zahtev.Objekat);
                         odgovor = new Odgovor();
+                        odgovor.Uspesno = true;
                         formatter.Serialize(tok, odgovor);
                         if (Provera(zahtev))
                         {
