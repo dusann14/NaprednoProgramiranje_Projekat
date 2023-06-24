@@ -235,6 +235,39 @@ namespace Klijent
             return (Odgovor)receiver.Primi();
         }
 
+        internal void OdjaviSe(IEntitet entitet)
+        {
+            
+            if(entitet is Common.Domen.Bibliotekar)
+            {
+                Common.Domen.Bibliotekar bibliotekar = (Common.Domen.Bibliotekar)entitet;
+                bibliotekar.Prijavljen = false;
+                Zahtev zahtev = new Zahtev
+                {
+                    Objekat = bibliotekar,
+                    Operacija = Operacije.PromeniPodatkeBibliotekara
+                };
+                sender.Posalji(zahtev);
+                receiver.Primi();
+                soket.Close();
+                soket = null;
+            }else if(entitet is Clan)
+            {
+                Clan clan = (Clan)entitet;
+                clan.Prijavljen = false;
+                Zahtev zahtev = new Zahtev
+                {
+                    Objekat = clan,
+                    Operacija = Operacije.PromeniPodatkeClana
+                };
+                sender.Posalji(zahtev);
+                receiver.Primi();
+                soket.Close();
+                soket = null;
+            }
 
+            
+
+        }
     }
 }
