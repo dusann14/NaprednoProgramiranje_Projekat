@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bibliotekar\FrmBibliotekar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bibliotekar\FrmBibliotekar.Designer.cs">
+      <DependentUpon>FrmBibliotekar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bibliotekar\Kontroler\BibliotekarKontroler.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,7 +88,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bibliotekar\" />
     <Folder Include="Clan\" />
   </ItemGroup>
   <ItemGroup>

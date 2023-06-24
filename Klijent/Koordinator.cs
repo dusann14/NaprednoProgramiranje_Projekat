@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Klijent.Bibliotekar;
+using Klijent.Bibliotekar.Kontroler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,7 @@ namespace Klijent
         }
 
         private LoginKontroler loginKontroler;
+        private BibliotekarKontroler bibliotekarKontroler;
 
         public void OtvoriLoginFormu()
         {
@@ -50,7 +53,9 @@ namespace Klijent
 
         public void OtvoriBibliotekarFormu()
         {
-            
+            bibliotekarKontroler.Bibliotekar = Session.Session.Instance.Bibliotekar;
+            FrmBibliotekar frmBibliotekar = bibliotekarKontroler.NapraviBibliotekarFormu();
+            frmBibliotekar.ShowDialog();
         }
         public void OtvoriClanFormu()
         {
