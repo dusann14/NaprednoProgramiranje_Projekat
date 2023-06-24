@@ -20,6 +20,7 @@ namespace Klijent.Clan.Kontroler
         public FrmClan NapraviClanFormu()
         {
             FrmClan = new FrmClan();
+            PostaviOdgovarajucuUC();
             FrmClan.homeToolStripMenuItem.Click += (s, e) => Koordinator.Instance.OtvoriUCHomeClan(this);
             FrmClan.pregledToolStripMenuItem.Click += (s, e) => Koordinator.Instance.OtvoriUCRezervacije(this);
             FrmClan.kreiranjeRezervacijeToolStripMenuItem.Click += (s, e) => Koordinator.Instance.OtvoriUCKreiranjeRezervacije(this);

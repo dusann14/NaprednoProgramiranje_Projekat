@@ -45,14 +45,18 @@ namespace Klijent
                 }
                 else if (entitet is Common.Domen.Clan)
                 {
-                    Session.Session.Instance.Clan = (Common.Domen.Clan)entitet;
+                    Common.Domen.Clan clan = (Common.Domen.Clan)entitet;
+                    clan.Prijavljen = true;
+                    Session.Session.Instance.Clan = clan; 
                     MessageBox.Show($"Dobrodosli {FrmLogin.textBox1.Text}");
                     Koordinator.Instance.OtvoriClanFormu();
                     FrmLogin.Dispose();
                 }
                 else if (entitet is Common.Domen.Bibliotekar)
-                {   
-                    Session.Session.Instance.Bibliotekar = (Common.Domen.Bibliotekar)entitet;
+                {
+                    Common.Domen.Bibliotekar bibliotekar = (Common.Domen.Bibliotekar)entitet;
+                    bibliotekar.Prijavljen = true;
+                    Session.Session.Instance.Bibliotekar = bibliotekar;
                     MessageBox.Show($"Dobrodosli {FrmLogin.textBox1.Text}");
                     Koordinator.Instance.OtvoriBibliotekarFormu();
                     FrmLogin.Dispose();
