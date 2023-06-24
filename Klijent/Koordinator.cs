@@ -1,6 +1,8 @@
 ﻿using Klijent.Bibliotekar;
 using Klijent.Bibliotekar.Kontroler;
 using Klijent.Bibliotekar.Kontroler.KontroleriUC;
+using Klijent.Clan.Kontroler;
+using Klijent.Clan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Klijent
         {
             loginKontroler = new LoginKontroler();
             bibliotekarKontroler = new BibliotekarKontroler();
+            clanKontroler = new ClanKontroler();
 
             //inicijalizacija kontrolera za bibliotekara
             kontrolerUCHome = new KontrolerUCHome();
@@ -45,6 +48,7 @@ namespace Klijent
 
         private LoginKontroler loginKontroler;
         private BibliotekarKontroler bibliotekarKontroler;
+        private ClanKontroler clanKontroler;
 
         //kontroleri za bibliotekara
         private KontrolerUCHome kontrolerUCHome;
@@ -85,7 +89,9 @@ namespace Klijent
         }
         public void OtvoriClanFormu()
         {
-            
+            clanKontroler.Clan = Session.Session.Instance.Clan;
+            FrmClan frmClan = clanKontroler.NapraviClanFormu();
+            frmClan.ShowDialog();
         }
 
         //metode za otvaranje UC za bibliotekara

@@ -108,6 +108,49 @@
     <Compile Include="Clan\FrmClan.Designer.cs">
       <DependentUpon>FrmClan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clan\Kontroler\ClanKontroler.cs" />
+    <Compile Include="Clan\UserControls\UCBiblioteka.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCBiblioteka.Designer.cs">
+      <DependentUpon>UCBiblioteka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCBiranjeBiblioteke.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCBiranjeBiblioteke.Designer.cs">
+      <DependentUpon>UCBiranjeBiblioteke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCHomeClan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCHomeClan.Designer.cs">
+      <DependentUpon>UCHomeClan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCKreiranjeRezervacije.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCKreiranjeRezervacije.Designer.cs">
+      <DependentUpon>UCKreiranjeRezervacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCProfilClan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCProfilClan.Designer.cs">
+      <DependentUpon>UCProfilClan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCRezervacije.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCRezervacije.Designer.cs">
+      <DependentUpon>UCRezervacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCUclanjivanje.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clan\UserControls\UCUclanjivanje.Designer.cs">
+      <DependentUpon>UCUclanjivanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clan\Kontroler\KontroleriUC\" />
-    <Folder Include="Clan\UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
