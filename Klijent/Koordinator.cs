@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Klijent.Clan.Kontroler.KontroleriUC;
 
 namespace Klijent
 {
@@ -44,6 +45,13 @@ namespace Klijent
             kontrolerUCObradjeneRez = new KontrolerUCObradjeneRez();
 
             //inicijalizacija kontrolera za clana
+            kontrolerUCBiranjeB = new KontrolerUCBiranjeBiblioteke();
+            kontrolerUCHomeClan = new KontrolerUCHomeClan();
+            kontrolerUCUclanjivanje = new KontrolerUCUclanjivanje();
+            kontrolerUCProfilClan = new KontrolerUCProfilClan();
+            kontrolerUCBiblioteka = new KontrolerUCBiblioteka();
+            kontrolerUCRezervacije = new KontrolerUCRezervacije();
+            kontrolerUCKreiranjeRez = new KontrolerUCKreiranjeRez();
         }
 
         private LoginKontroler loginKontroler;
@@ -61,7 +69,13 @@ namespace Klijent
 
 
         //kontroleri za clana
-
+        private KontrolerUCBiranjeBiblioteke kontrolerUCBiranjeB;
+        private KontrolerUCHomeClan kontrolerUCHomeClan;
+        private KontrolerUCUclanjivanje kontrolerUCUclanjivanje;
+        private KontrolerUCProfilClan kontrolerUCProfilClan;
+        private KontrolerUCBiblioteka kontrolerUCBiblioteka;
+        private KontrolerUCRezervacije kontrolerUCRezervacije;
+        private KontrolerUCKreiranjeRez kontrolerUCKreiranjeRez;
 
         public void OtvoriLoginFormu()
         {
@@ -95,7 +109,6 @@ namespace Klijent
         }
 
         //metode za otvaranje UC za bibliotekara
-
         internal void OtvoriUCHome(BibliotekarKontroler bibliotekarKontroler)
         {
             bibliotekarKontroler.FrmBibliotekar.SetPanel(kontrolerUCHome.NapraviUCHome(bibliotekarKontroler.Bibliotekar));
@@ -132,6 +145,39 @@ namespace Klijent
         }
 
         //metode za otvaranje UC za clana
+        internal void OtvoriUCBiranjeBiblioteke(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCBiranjeB.NapraviUCBiranjeBiblioteke(clanKontroler));
+        }
 
+        internal void OtvoriUCHome(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCHomeClan.NapraviUCHome(clanKontroler));
+        }
+
+        internal void OtvoriUCUclanjivanje(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCUclanjivanje.NapraviUCUclanjivanje(clanKontroler));
+        }
+
+        internal void OtvoriUCProfil(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCProfilClan.NapraviUCProfil(clanKontroler));
+        }
+
+        internal void OtvoriUCBiblioteka(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCBiblioteka.NapraviUCBiblioteka(clanKontroler));
+        }
+
+        internal void OtvoriUCRezervacije(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCRezervacije.NapraviUCRezervacije(clanKontroler));
+        }
+
+        internal void OtvoriUCKreiranjeRezervacije(ClanKontroler clanKontroler)
+        {
+            clanKontroler.FrmClan.SetPanel(kontrolerUCKreiranjeRez.NapraviUCKreiranjeRezervacije(clanKontroler));
+        }
     }
 }
