@@ -53,6 +53,13 @@
       <DependentUpon>FrmBibliotekar.cs</DependentUpon>
     </Compile>
     <Compile Include="Bibliotekar\Kontroler\BibliotekarKontroler.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCClanovi.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCDodajKnjigu.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCHome.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCIzmeniKnjigu.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCObradjeneRez.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCPristigleRez.cs" />
+    <Compile Include="Bibliotekar\Kontroler\KontroleriUC\KontrolerUCProfil.cs" />
     <Compile Include="Bibliotekar\UserControls\UCClanovi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,7 +137,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Bibliotekar\Kontroler\KontroleriUC\" />
     <Folder Include="Clan\" />
   </ItemGroup>
   <ItemGroup>
