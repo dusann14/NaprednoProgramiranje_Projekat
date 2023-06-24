@@ -109,6 +109,13 @@
       <DependentUpon>FrmClan.cs</DependentUpon>
     </Compile>
     <Compile Include="Clan\Kontroler\ClanKontroler.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCBiblioteka.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCBiranjeBiblioteke.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCHomeClan.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCKreiranjeRez.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCProfilClan.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCRezervacije.cs" />
+    <Compile Include="Clan\Kontroler\KontroleriUC\KontrolerUCUclanjivanje.cs" />
     <Compile Include="Clan\UserControls\UCBiblioteka.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,9 +192,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clan\Kontroler\KontroleriUC\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{9906ACDD-1CDE-44B0-878C-671989989FC7}</Project>

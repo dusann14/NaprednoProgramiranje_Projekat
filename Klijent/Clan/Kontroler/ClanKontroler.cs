@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Klijent.Clan.Kontroler
 {
@@ -21,6 +22,20 @@ namespace Klijent.Clan.Kontroler
             FrmClan = new FrmClan();
             
             return FrmClan;
+        }
+
+        internal void OdjaviSe()
+        {
+            try
+            {
+                Komunikacija.Instance.OdjaviSe(Clan);
+                MessageBox.Show("Uspesno ste se odjavili");
+                FrmClan.Dispose();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
     }
