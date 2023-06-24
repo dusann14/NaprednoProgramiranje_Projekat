@@ -354,21 +354,15 @@ namespace Klijent
             return (Odgovor)receiver.Primi();
         }
 
-        internal List<Biblioteka> VratiBibliotekeClana(Domen.Clan clan)
+        internal Odgovor VratiBiblioteke()
         {
-            ClanBiblioteka clanBiblioteka = new ClanBiblioteka
-            {
-                Clan = clan
-            };
-
             Zahtev zahtev = new Zahtev
             {
-                Objekat = clanBiblioteka,
-                Operacija = Operacije.VratiBibliotekeClana
+                Objekat = new Biblioteka(),
+                Operacija = Operacije.PrikaziSveBiblioteke
             };
             sender.Posalji(zahtev);
-            Odgovor odgovor = (Odgovor)receiver.Primi();
-            return (List<Biblioteka>)odgovor.Rezultat;
+            return (Odgovor)receiver.Primi();
         }
 
     }
