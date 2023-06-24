@@ -27,8 +27,8 @@ namespace Klijent.Session
 
 
 
-        public Clan Clan { get; set; }
+        public Common.Domen.Clan Clan { get; set; }
 
-        public Bibliotekar Bibliotekar { get; set; }
+        public Common.Domen.Bibliotekar Bibliotekar { get; set; }
     }
 }

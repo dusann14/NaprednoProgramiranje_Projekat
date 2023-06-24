@@ -29,7 +29,7 @@ namespace Klijent.Bibliotekar.Kontroler.KontroleriUC
 
         private List<ClanBiblioteka> VratiClanovePoImenu(Biblioteka biblioteka)
         {
-            Clan clan = new Clan
+            Common.Domen.Clan clan = new Common.Domen.Clan
             {
                 ImePrezime = UCClanovi.textBox1.Text
             };

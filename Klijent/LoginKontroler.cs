@@ -43,16 +43,16 @@ namespace Klijent
                     MessageBox.Show("Ne postoji korisnik sa unetim kredencijalima");
                     return;
                 }
-                else if (entitet is Clan)
+                else if (entitet is Common.Domen.Clan)
                 {
-                    Session.Session.Instance.Clan = (Clan)entitet;
+                    Session.Session.Instance.Clan = (Common.Domen.Clan)entitet;
                     MessageBox.Show($"Dobrodosli {FrmLogin.textBox1.Text}");
                     Koordinator.Instance.OtvoriClanFormu();
                     FrmLogin.Dispose();
                 }
-                else if (entitet is Bibliotekar)
+                else if (entitet is Common.Domen.Bibliotekar)
                 {   
-                    Session.Session.Instance.Bibliotekar = (Bibliotekar)entitet;
+                    Session.Session.Instance.Bibliotekar = (Common.Domen.Bibliotekar)entitet;
                     MessageBox.Show($"Dobrodosli {FrmLogin.textBox1.Text}");
                     Koordinator.Instance.OtvoriBibliotekarFormu();
                     FrmLogin.Dispose();
