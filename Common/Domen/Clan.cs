@@ -15,7 +15,7 @@ namespace Common.Domen
     public class Clan : IEntitet
     {
         /// <summary>
-        /// Jedinstveni identifikator biblioteke kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// Jedinstveni identifikator clana kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
         /// </summary>
         [Browsable(false)]
         public int IDClan { get; set; }

@@ -8,27 +8,54 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet knjige. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Knjiga : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator knjige kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDKnjiga { get; set; }
 
+        /// <summary>
+        /// Naslov knjige kao string.
+        /// </summary>
         public string Naslov { get; set; }
 
+        /// <summary>
+        /// Broj primeraka knjige u biblioteci kao celobrojna vrednost.
+        /// </summary>
         public int BrojPrimeraka { get; set; }
 
+        /// <summary>
+        /// Autor knjige.
+        /// </summary>
         public Autor Autor { get; set; }
 
+        /// <summary>
+        /// Biblioteka u kojoj se nalazi knjiga.
+        /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
+        /// <summary>
+        /// Prikazuje objekat klase Knjiga kao njen naslov. Kada se ispisuje objekat klase Knjiga ispisuje se njen naslov.
+        /// </summary>
+        /// <returns>Ime i prezime clana</returns>
         public override string ToString()
         {
             return $"{Naslov}";
         }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Knjiga";
         [Browsable(false)]
