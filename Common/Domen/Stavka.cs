@@ -8,19 +8,36 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet clana. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Stavka : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator stavke kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDStavka { get; set; }
 
+        /// <summary>
+        /// <see cref="Rezervacija"/> Rezervacija stavke.
+        /// </summary>
         [Browsable(false)]
         public Rezervacija Rezervacija { get; set; }
 
+        /// <summary>
+        /// <see cref="Knjiga"/> Knjiga na koju se stavka odnosi. 
+        /// </summary>
         public Knjiga Knjiga { get; set; }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Stavka";
         [Browsable(false)]
