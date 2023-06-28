@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Common.Domen
 {
     /// <summary>
-    /// Predstavlja entitet autora u biblioteci. Implementira interfejs IEntitet
+    /// Predstavlja entitet autora u biblioteci. Implementira interfejs IEntitet i serijabilna je klasa.
     /// </summary>
     [Serializable]
     public class Autor : IEntitet
@@ -31,7 +31,7 @@ namespace Common.Domen
         public Biblioteka Biblioteka { get; set; }
 
         /// <summary>
-        /// Prikazuje objekat klase autora kao njegovo ime i prezime. Kada se ispisuje objekat autora ispisuju se njegovo ime i prezime.
+        /// Prikazuje objekat klase autora kao njegovo ime i prezime. Kada se ispisuje objekat klase Autor ispisuju se njegovo ime i prezime.
         /// </summary>
         /// <returns>Ime i prezime autora.</returns>
         public override string ToString()
