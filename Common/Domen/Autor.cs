@@ -26,7 +26,7 @@ namespace Common.Domen
         public string ImePrezime { get; set; }
 
         /// <summary>
-        /// Pripadajuća biblioteka autora.
+        /// <see cref="Domen.Bibliotekar"/> Pripadajuća biblioteka autora.
         /// </summary>
         public Biblioteka Biblioteka { get; set; }
 

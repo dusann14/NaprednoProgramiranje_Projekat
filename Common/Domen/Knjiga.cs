@@ -31,12 +31,12 @@ namespace Common.Domen
         public int BrojPrimeraka { get; set; }
 
         /// <summary>
-        /// Autor knjige.
+        /// <see cref="Domen.Autor"/> Autor knjige.
         /// </summary>
         public Autor Autor { get; set; }
 
         /// <summary>
-        /// Biblioteka u kojoj se nalazi knjiga.
+        /// <see cref="Domen.Biblioteka"/> Biblioteka u kojoj se nalazi knjiga.
         /// </summary>
         public Biblioteka Biblioteka { get; set; }
 

@@ -27,22 +27,22 @@ namespace Common.Domen
         public DateTime DatumTrajanja { get; set; }
 
         /// <summary>
-        /// Clan koji je napravi rezervaciju.
+        /// <see cref="Domen.Clan"/> Clan koji je napravi rezervaciju.
         /// </summary>
         public Clan Clan { get; set; }
 
         /// <summary>
-        /// Biblioteka u kojoj je registrovana rezervacija.
+        /// <see cref="Domen.Biblioteka"/> Biblioteka u kojoj je registrovana rezervacija.
         /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
         /// <summary>
-        /// Status rezervacije.
+        /// <see cref="StatusRezervacije"/> Status rezervacije.
         /// </summary>
         public StatusRezervacije Status { get; set; }
 
         /// <summary>
-        /// Lista stavki u rezervaciji.
+        /// <see cref="Stavka"/> Lista stavki u rezervaciji.
         /// </summary>
         public List<Stavka> Stavke { get; set; }
 

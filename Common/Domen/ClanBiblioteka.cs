@@ -20,12 +20,12 @@ namespace Common.Domen
         public DateTime DatumUclanjenja { get; set; }
 
         /// <summary>
-        /// Biblioteka u koju je uclanjen clan.
+        /// <see cref="Domen.Biblioteka"/> Biblioteka u koju je uclanjen clan.
         /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
         /// <summary>
-        /// Clan koji je uclanjen u biblioteku
+        /// <see cref="Domen.Clan"/> Clan koji je uclanjen u biblioteku
         /// </summary>
         public Clan Clan { get; set; }
 

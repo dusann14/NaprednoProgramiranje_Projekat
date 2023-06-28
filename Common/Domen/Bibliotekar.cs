@@ -46,7 +46,7 @@ namespace Common.Domen
         public DateTime DatumRodjenja { get; set; }
 
         /// <summary>
-        /// Oznacava pripadajucu biblioteku bibliotekara.
+        /// <see cref="Domen.Biblioteka"/> Oznacava pripadajucu biblioteku bibliotekara.
         /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
