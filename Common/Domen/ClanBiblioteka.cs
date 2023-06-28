@@ -8,20 +8,39 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet objekta koji predstvalja clana koji je uclanjen u jednu specificu biblioteku. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class ClanBiblioteka : IEntitet
     {
+        /// <summary>
+        /// Datum uclanjenja clana u biblioteku kao DateTime.
+        /// </summary>
         public DateTime DatumUclanjenja { get; set; }
 
+        /// <summary>
+        /// Biblioteka u koju je uclanjen clan.
+        /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
+        /// <summary>
+        /// Clan koji je uclanjen u biblioteku
+        /// </summary>
         public Clan Clan { get; set; }
 
+        /// <summary>
+        /// Prikazuje objekat klase ClanBiblioteka kao njegov clan i datum uclanjenja clana. Kada se ispisuje objekat klase ClanBiblioteka ispisuje se njegov clan i datum uclanjenja clana.
+        /// </summary>
+        /// <returns>Ime i prezime clana</returns>
         public override string ToString()
         {
             return $"{Clan}, {DatumUclanjenja}";
         }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
 
