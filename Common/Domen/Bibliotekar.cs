@@ -8,26 +8,55 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet bibliotekara. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Bibliotekar : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator bibliotekara kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDBibliotekar { get; set; }
 
+        /// <summary>
+        /// Ime i prezime bibliotekara kao string.
+        /// </summary>
         public string ImePrezime { get; set; }
 
+        /// <summary>
+        /// Korisnicko ime bibliotekara kao string.
+        /// </summary>
         public string KorisnickoIme { get; set; }
 
+        /// <summary>
+        /// Lozinka bibliotekara kao string.
+        /// </summary>
         public string Lozinka { get; set; }
 
+        /// <summary>
+        /// Pokazuje da li je bibliotekar trenutno prijavljen ili nije kao bool.
+        /// </summary>
         public bool Prijavljen { get; set; }
 
+        /// <summary>
+        /// Datum rodjenja bibliotekara kao DateTime.
+        /// </summary>
         public DateTime DatumRodjenja { get; set; }
 
+        /// <summary>
+        /// Oznacava pripadajucu biblioteku bibliotekara.
+        /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Bibliotekar";
         [Browsable(false)]
