@@ -31,7 +31,7 @@ namespace Common.Domen
         public Biblioteka Biblioteka { get; set; }
 
         /// <summary>
-        /// Prikazuje objekat klase autora kao njegovo ime i prezime. Kada se ispisuje objekat klase Autor ispisuju se njegovo ime i prezime.
+        /// Prikazuje objekat klase Autor kao njegovo ime i prezime. Kada se ispisuje objekat klase Autor ispisuju se njegovo ime i prezime.
         /// </summary>
         /// <returns>Ime i prezime autora.</returns>
         public override string ToString()

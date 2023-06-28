@@ -31,7 +31,7 @@ namespace Common.Domen
         public string Adresa { get; set; }
 
         /// <summary>
-        /// Prikazuje objekat klase biblioteka kao njeno ime. Kada se ispisuje objekat klase Biblioteka ispisuje se njeno ime.
+        /// Prikazuje objekat klase Biblioteka kao njeno ime. Kada se ispisuje objekat klase Biblioteka ispisuje se njeno ime.
         /// </summary>
         /// <returns>Ime biblioteke</returns>
         public override string ToString()
