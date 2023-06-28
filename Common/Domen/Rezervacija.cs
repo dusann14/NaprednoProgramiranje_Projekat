@@ -9,25 +9,50 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet rezervacije. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Rezervacija : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator rezervacije kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDRezervacija { get; set; }
 
+        /// <summary>
+        /// Datum do kada vazi rezervacija kao DateTime.
+        /// </summary>
         public DateTime DatumTrajanja { get; set; }
 
+        /// <summary>
+        /// Clan koji je napravi rezervaciju.
+        /// </summary>
         public Clan Clan { get; set; }
 
+        /// <summary>
+        /// Biblioteka u kojoj je registrovana rezervacija.
+        /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
+        /// <summary>
+        /// Status rezervacije.
+        /// </summary>
         public StatusRezervacije Status { get; set; }
 
+        /// <summary>
+        /// Lista stavki u rezervaciji.
+        /// </summary>
         public List<Stavka> Stavke { get; set; }
 
-
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Rezervacija";
         [Browsable(false)]
