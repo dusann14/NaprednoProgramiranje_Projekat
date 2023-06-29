@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Common.SistemskeOperacije.ClanBibliotekaSO
 {
+    /// <summary>
+    /// Klasa UclaniSeSO koja nasledjuje klasu SistemskaOperacijaBaza i implementira na odogovarajuci nacin metodu Izvrsi.
+    /// </summary>
     public class UclaniSeSO : SistemskaOperacijaBaza
     {
+        /// <summary>
+        /// Jedinstveni identifikator unetog sloga u bazu podataka.
+        /// </summary>
         public int Rezultat { get; set; }
         protected override void Izvrsi(IEntitet entitet)
         {

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Common.SistemskeOperacije.KnjigaSO
 {
+    /// <summary>
+    /// Klasa ObrisiKnjiguSO koja nasledjuje klasu SistemskaOperacijaBaza i implementira na odogovarajuci nacin metodu Izvrsi.
+    /// </summary>
     public class ObrisiKnjiguSO : SistemskaOperacijaBaza
     {
         protected override void Izvrsi(IEntitet entitet)

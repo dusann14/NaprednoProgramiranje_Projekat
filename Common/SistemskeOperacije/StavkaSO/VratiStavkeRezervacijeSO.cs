@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Common.SistemskeOperacije.StavkaSO
 {
+    /// <summary>
+    /// Klasa VratiStavkeRezervacijeSO koja nasledjuje klasu SistemskaOperacijaBaza i implementira na odogovarajuci nacin metodu Izvrsi.
+    /// </summary>
     public class VratiStavkeRezervacijeSO : SistemskaOperacijaBaza
     {
+        /// <summary>
+        /// Lista stavki vracenih iz baze podataka.
+        /// </summary>
         public List<Stavka> Rezultat { get; set; }
         protected override void Izvrsi(IEntitet entitet)
         {

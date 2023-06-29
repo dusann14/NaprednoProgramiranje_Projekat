@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Common.SistemskeOperacije.AutorSO
 {
+    /// <summary>
+    /// Klasa VratiAutoreSO koja nasledjuje klasu SistemskaOperacijaBaza i implementira na odogovarajuci nacin metodu Izvrsi.
+    /// </summary>
     public class VratiAutoreSO : SistemskaOperacijaBaza
     {
+        /// <summary>
+        /// Lista autora vracena iz baze podataka.
+        /// </summary>
         public List<Autor> Rezultat { get; set; }
         protected override void Izvrsi(IEntitet entitet)
         {
