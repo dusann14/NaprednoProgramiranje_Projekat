@@ -9,6 +9,9 @@ namespace Common.Baza
 {
     public class GenerickiRepo : IGenerickiRepo
     {
+        /// <summary>
+        /// Objekat klase BrokerBaze koji radi sa bazom podataka.
+        /// </summary>
         private BrokerBaze broker = new BrokerBaze();
         public void Commit()
         {
