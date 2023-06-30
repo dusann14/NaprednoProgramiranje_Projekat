@@ -11,19 +11,45 @@ using System.Threading.Tasks;
 
 namespace Server.Obrada
 {
+    /// <summary>
+    /// Klasa koja vrsi obradu klijentskih zahteva koje salje bibliotekar.
+    /// </summary>
     public class BibliotekarObrada
     {
+        /// <summary>
+        /// Soket koji sluzi za postavljanje toka i formattera.
+        /// </summary>
         private Socket soket;
+
+        /// <summary>
+        /// Lista bibliotekara za koje se vrsi obrada.
+        /// </summary>
         private BindingList<Bibliotekar> list;
+
+        /// <summary>
+        /// Tok sa kog se skidaju klijentski zahtevi i na koji se salju serverski odgovori.
+        /// </summary>
         private NetworkStream tok;
+
+        /// <summary>
+        /// BinaryFormatter koji sluzi za slanje i skidanje zahteva sa toka.
+        /// </summary>
         private BinaryFormatter formatter;
 
+        /// <summary>
+        /// Konstruktor kojim se postavlja polje soketa i liste bibliotekara.
+        /// </summary>
+        /// <param name="soket">Prihvaceni klijentski soket.</param>
+        /// <param name="list">Lista prijavljenih bibliotekara.</param>
         public BibliotekarObrada(Socket soket, System.ComponentModel.BindingList<Bibliotekar> list)
         {
             this.soket = soket;
             this.list = list;
         }
 
+        /// <summary>
+        /// Metoda koja prima zahteve sa klijenta i salje odgovarajuci odgovor.
+        /// </summary>
         public void Obradi()
         {
             try
@@ -69,6 +95,11 @@ namespace Server.Obrada
             }
         }
 
+        /// <summary>
+        /// Metoda koja filtrira klijentske zahteve i u zavisnosti od enum-a Operacije poziva odgovarajucu metodu kontrolera koji poziva izvrsenje sistemskih operacija.
+        /// </summary>
+        /// <param name="zahtev">Klijentski zahtev.</param>
+        /// <returns>Serverski odgovor.</returns>
         private Odgovor Odgovori(Zahtev zahtev)
         {
             Odgovor odgovor = new Odgovor();
@@ -119,6 +150,11 @@ namespace Server.Obrada
             return odgovor;
         }
 
+        /// <summary>
+        /// Vrsi se provera da li je bibliotekar iskazao zelju da se odjavi sa sistema ili je samo zeleo da promeni podatke.
+        /// </summary>
+        /// <param name="zahtev">Klijentski zahtev.</param>
+        /// <returns>true - ako je bibliotekar zeleo da se odjavi, false - ako bibliotekar nije zeleo da se odjavi</returns>
         private bool Provera(Zahtev zahtev)
         {
             Bibliotekar bibliotekar = (Bibliotekar)zahtev.Objekat;
@@ -130,6 +166,10 @@ namespace Server.Obrada
             return false;
         }
 
+        /// <summary>
+        /// Izbacuje bibliotekara iz liste ukoliko se bibliotekar odjavio sa sistema.
+        /// </summary>
+        /// <param name="clan"></param>
         private void Stop(Bibliotekar bibliotekar)
         {
             foreach (Bibliotekar b in list)
@@ -142,6 +182,9 @@ namespace Server.Obrada
             }
         }
 
+        /// <summary>
+        /// Zatvara klijentski soket.
+        /// </summary>
         internal void Stop()
         {
             soket.Close();
