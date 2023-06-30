@@ -93,7 +93,7 @@ namespace Common.Test.DomenTests
             _clanBiblioteka.DatumUclanjenja = DateTime.Now;
             //Assert
             _clanBiblioteka.ToString().Should().NotBeNullOrWhiteSpace();
-            _clanBiblioteka.ToString().Should().Contain("Dusan Stoimenovic");
+            _clanBiblioteka.ToString().Should().Contain(_clanBiblioteka.Clan.ImePrezime);
             _clanBiblioteka.ToString().Should().Contain(_clanBiblioteka.DatumUclanjenja.ToString());
         }
 

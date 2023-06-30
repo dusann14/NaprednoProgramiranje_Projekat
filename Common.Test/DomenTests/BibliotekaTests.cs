@@ -65,7 +65,7 @@ namespace Common.Test.DomenTests
             _biblioteka.Ime = "Laguna";
             //Asssert
             _biblioteka.ToString().Should().NotBeNullOrWhiteSpace();
-            _biblioteka.ToString().Should().Contain("Laguna");
+            _biblioteka.ToString().Should().Contain(_biblioteka.Ime);
         }
 
     }

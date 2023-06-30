@@ -95,7 +95,7 @@ namespace Common.Test.DomenTests
             _clan.ImePrezime = "Dusan Stoimenovic";
             //Assert
             _clan.ToString().Should().NotBeNullOrWhiteSpace();
-            _clan.ToString().Should().Contain("Dusan Stoimenovic");
+            _clan.ToString().Should().Contain(_clan.ImePrezime);
         }
 
     }

@@ -75,7 +75,7 @@ namespace Common.Test.DomenTests
             _autor.ImePrezime = "Dusan Stoimenovic";
             //Assert
             _autor.ToString().Should().NotBeNullOrWhiteSpace();
-            _autor.ToString().Should().Contain("Dusan Stoimenovic");
+            _autor.ToString().Should().Contain(_autor.ImePrezime);
         }
 
     }
