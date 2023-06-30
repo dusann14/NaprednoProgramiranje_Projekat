@@ -14,29 +14,75 @@ using System.Threading.Tasks;
 
 namespace Server
 {
+    /// <summary>
+    /// Klasa zaduzena prvenstveno za primanje klijentskih zahteva za povezivanje na sistem i obradu zahteva za prijavu.
+    /// </summary>
     public class ServerKlasa
     {
+        /// <summary>
+        /// Soket koji se koristi za osluskivanje klijentskih zahteva.
+        /// </summary>
         private Socket osluskujuciSoket;
+
+        /// <summary>
+        /// Polje koje oznacava da li je kraj sa radom servera;
+        /// </summary>
         bool kraj;
+
+        /// <summary>
+        /// Clanovi koji su povezani na sistem tipa Clan.
+        /// </summary>
         private BindingList<Clan> clanovi = new BindingList<Clan>();
+
+        /// <summary>
+        /// Bibliotekrai koji su povezani na sistem tipa Bibliotekar.
+        /// </summary>
         private BindingList<Bibliotekar> bibliotekari = new BindingList<Bibliotekar>();
+
+        /// <summary>
+        /// Polje za slanje odgovora ka klijentu.
+        /// </summary>
         private Sender sender;
+
+        /// <summary>
+        /// Polje za primanje zahteva od klijenta.
+        /// </summary>
         private Receiver receiver;
+
+        /// <summary>
+        /// Trenutno prijavljeni korisnik.
+        /// </summary>
         private IEntitet prijavljeniKorisnik = null;
 
+        /// <summary>
+        /// Niti clanova koji su povezani na sistem.
+        /// </summary>
         private List<ClanObrada> klijentiClanovi = new List<ClanObrada>();
+
+        /// <summary>
+        /// Niti bibliotekara koji su povezani na sistem.
+        /// </summary>
         private List<BibliotekarObrada> klijentiBibliotekari = new List<BibliotekarObrada>();
 
+        /// <summary>
+        /// Getter za vracanje liste bibliotekara.
+        /// </summary>
         public BindingList<Bibliotekar> Bibliotekari
         {
             get { return bibliotekari; }
         }
 
+        /// <summary>
+        /// Getter za vracanje liste clanova.
+        /// </summary>
         public BindingList<Clan> Clanovi
         {
             get { return clanovi; }
         }
 
+        /// <summary>
+        /// Postavlja osluskujuci soket na odgovarajuci IPEndPoint sa adresom i portom. Nakon toga soket pocinje sa osluskivanjem.
+        /// </summary>
         internal void PoveziSe()
         {
             osluskujuciSoket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -44,6 +90,9 @@ namespace Server
             osluskujuciSoket.Listen(10);
         }
 
+        /// <summary>
+        /// Sluzi za primanje klijentskih zahteva za povezivanje na sistem. Vrsi se prijava na sistem i nakon toga obradjuje proveru da li je korisnik koji se upravo prijavio clan ili bibliotekar i zavisnosti od toga pokrece se odgovarajuca nit za obradu klijentskih zahteva.
+        /// </summary>
         internal void Osluskuj()
         {
             try
@@ -95,6 +144,9 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Metoda koja vrsi obradu prijave na sistem.
+        /// </summary>
         private void ObradiPrijavu()
         {
             Zahtev zahtev = (Zahtev)receiver.Primi();
@@ -104,6 +156,9 @@ namespace Server
             sender.Posalji(odgovor);
         }
 
+        /// <summary>
+        /// Nakon prekida rada servera sve niti bez obzira da li su clanske ili bibliotekarske prestaju sa radom i sam soket staje sa osluskivanjem.
+        /// </summary>
         internal void Stop()
         {
             kraj = true;
