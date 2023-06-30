@@ -69,7 +69,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact] 
-        public void Autor_ToString()
+        public void Autor_ToString_ReturnString()
         {
             //Act
             _autor.ImePrezime = "Dusan Stoimenovic";

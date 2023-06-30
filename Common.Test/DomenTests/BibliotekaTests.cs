@@ -59,7 +59,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void Biblioteka_ToString()
+        public void Biblioteka_ToString_ReturnString()
         {
             //Act
             _biblioteka.Ime = "Laguna";
