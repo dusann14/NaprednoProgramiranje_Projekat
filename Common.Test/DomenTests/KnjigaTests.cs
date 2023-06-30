@@ -91,7 +91,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void Bibliotekar_Uslov()
+        public void Bibliotekar_SetUslov()
         {
             //Act
             _knjiga.Uslov = "neki uslov";

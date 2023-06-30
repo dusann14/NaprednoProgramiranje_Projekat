@@ -79,7 +79,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void Clan_Uslov()
+        public void Clan_SetUslov()
         {
             //Act
             _clan.Uslov = "neki uslov";

@@ -67,7 +67,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void ClanBibliotek_Uslov()
+        public void ClanBiblioteka_SetUslov()
         {
             //Act
             _clanBiblioteka.Uslov = "neki uslov";

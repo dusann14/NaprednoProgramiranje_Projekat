@@ -49,7 +49,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void Biblioteka_Uslov()
+        public void Biblioteka_SetUslov()
         {
             //Act
             _biblioteka.Uslov = "neki uslov";
