@@ -14,9 +14,9 @@ namespace Common.Test.DomenTests
 
         private readonly Bibliotekar _bibliotekar;
 
-        public BibliotekarTests(Bibliotekar bibliotekar)
+        public BibliotekarTests()
         {
-            _bibliotekar = bibliotekar;
+            _bibliotekar = new Bibliotekar();
         }
 
         [Fact]
