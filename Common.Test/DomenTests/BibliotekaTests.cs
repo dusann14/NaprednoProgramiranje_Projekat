@@ -68,5 +68,38 @@ namespace Common.Test.DomenTests
             _biblioteka.ToString().Should().Contain(_biblioteka.Ime);
         }
 
+        [Theory]
+        [InlineData(1, 1, true)]
+        [InlineData(1, 2, false)]
+        public void Biblioteka_Equals_ReturnBool(int a, int b, bool result)
+        {
+            //Act
+            _biblioteka.IDBiblioteka = a;
+
+            Biblioteka biblioteka = new Biblioteka
+            {
+                IDBiblioteka = b
+            };
+            //Asssert
+            _biblioteka.Equals(biblioteka).Should().Be(result);
+        }
+
+        [Fact]
+        public void Biblioteka_EqualsNull_ReturnBool()
+        {
+            //Act
+            //Asssert
+            _biblioteka.Equals(null).Should().BeFalse();
+        }
+
+
+        [Fact]
+        public void Biblioteka_EqualsDrugaKlasa_ReturnBool()
+        {
+            //Act
+            //Asssert
+            _biblioteka.Equals(new Autor()).Should().BeFalse();
+        }
+
     }
 }

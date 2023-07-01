@@ -154,7 +154,7 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void ClanBibliotek_SetUslov()
+        public void Rezervacija_SetUslov()
         {
             //Act
             _rezervacija.Uslov = "neki uslov";
