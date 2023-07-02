@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja status rezervacije kao enum. Vrednosti koje uzima su neobradjena, obradjena i istekla.
+    /// </summary>
     public enum StatusRezervacije
     {
         NEOBRADJENA = 1,

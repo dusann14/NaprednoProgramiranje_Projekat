@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Common.SistemskeOperacije.ClanBibliotekaSO
 {
+    /// <summary>
+    /// Klasa OtkaziClanstvoSO koja nasledjuje klasu SistemskaOperacijaBaza i implementira na odogovarajuci nacin metodu Izvrsi.
+    /// </summary>v
     public class OtkaziClanstvoSO : SistemskaOperacijaBaza
     {
         protected override void Izvrsi(IEntitet entitet)

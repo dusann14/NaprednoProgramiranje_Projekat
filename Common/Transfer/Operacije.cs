@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common.Transfer
 {
+    /// <summary>
+    /// Operacije koje klijent salje i zahteva odgovor na osnovu operacije. Serijablina je klasa.
+    /// </summary>
     [Serializable]
     public enum Operacije
     {

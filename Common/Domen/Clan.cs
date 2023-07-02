@@ -8,32 +8,59 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet clana. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Clan : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator clana kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDClan { get; set; }
 
-
+        /// <summary>
+        /// Korisnicko ime clana kao string.
+        /// </summary>
         public string KorisnickoIme { get; set; }
 
+        /// <summary>
+        /// Lozinka clana kao string.
+        /// </summary>
         public string Lozinka { get; set; }
 
-
+        /// <summary>
+        /// Ime i prezime clana kao string.
+        /// </summary>
         public string ImePrezime { get; set; }
 
+        /// <summary>
+        /// Pokazuje da li je clan trenutno prijavljen ili nije kao bool.
+        /// </summary>
         public bool Prijavljen { get; set; }
 
-
+        /// <summary>
+        /// Datum rodjenja clana kao DateTime.
+        /// </summary>
         public DateTime DatumRodjenja { get; set; }
 
+        /// <summary>
+        /// Prikazuje objekat klase Clan kao njegovo ime i prezime. Kada se ispisuje objekat klase Clan ispisuje se njegovo ime i prezime.
+        /// </summary>
+        /// <returns>Ime i prezime clana</returns>
         public override string ToString()
         {
             return $"{ImePrezime}";
         }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Clan";
         [Browsable(false)]

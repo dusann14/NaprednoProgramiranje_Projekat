@@ -8,23 +8,44 @@ using System.Threading.Tasks;
 
 namespace Common.Domen
 {
+    /// <summary>
+    /// Predstavlja entitet autora u biblioteci. Implementira interfejs IEntitet i serijabilna je klasa.
+    /// </summary>
     [Serializable]
     public class Autor : IEntitet
     {
+        /// <summary>
+        /// Jedinstveni identifikator autora kao celobrojna vrednost. Ne prikazuje se na korisnickom interfejsu. 
+        /// </summary>
         [Browsable(false)]
         public int IDAutor { get; set; }
 
+        /// <summary>
+        /// Ime i prezime autora kao string.
+        /// </summary>
         public string ImePrezime { get; set; }
 
+        /// <summary>
+        /// <see cref="Domen.Bibliotekar"/> Pripadajuća biblioteka autora.
+        /// </summary>
         public Biblioteka Biblioteka { get; set; }
 
+        /// <summary>
+        /// Prikazuje objekat klase Autor kao njegovo ime i prezime. Kada se ispisuje objekat klase Autor ispisuju se njegovo ime i prezime.
+        /// </summary>
+        /// <returns>Ime i prezime autora.</returns>
         public override string ToString()
         {
             return $"{ImePrezime}";
         }
 
+        /// <summary>
+        /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
+        /// </summary>
         [Browsable(false)]
         public string Uslov { get; set; }
+
+
         [Browsable(false)]
         public string ImeTabele => "Autor";
         [Browsable(false)]
