@@ -1157,5 +1157,127 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga1);
             operacijaZaBrisanje.Template(knjiga2);
         }
+
+        [Fact]
+        public void Kontroler_ObradiRezervaciju()
+        {
+            //Act
+            //dodavanje knjige u bazu
+            Knjiga knjiga1 = new Knjiga
+            {
+                Naslov = "Naslov1",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            Knjiga knjiga2 = new Knjiga
+            {
+                Naslov = "Naslov2",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            //upisivanje u bazu
+            DodajKnjiguSO operacijaZaDodavanje = new DodajKnjiguSO();
+
+            operacijaZaDodavanje.Template(knjiga1);
+            knjiga1.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            operacijaZaDodavanje.Template(knjiga2);
+            knjiga2.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+
+            List<Stavka> stavke = new List<Stavka>();
+
+            Rezervacija rezervacija = new Rezervacija
+            {
+                DatumTrajanja = DateTime.Now,
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Status = StatusRezervacije.NEOBRADJENA,
+            };
+
+            Stavka stavka1 = new Stavka
+            {
+                Knjiga = knjiga1,
+                Rezervacija = rezervacija
+            };
+
+            Stavka stavka2 = new Stavka
+            {
+                Knjiga = knjiga2,
+                Rezervacija = rezervacija
+            };
+
+            stavke.Add(stavka1);
+            stavke.Add(stavka2);
+
+            rezervacija.Stavke = stavke;
+
+            KreirajRezervacijuSO operacijaZaDodavanjeRez = new KreirajRezervacijuSO();
+            operacijaZaDodavanjeRez.Template(rezervacija);
+            rezervacija.IDRezervacija = operacijaZaDodavanjeRez.Rezultat;
+
+            //obrada rezervacije
+            ObradiRezervacijuSO obradiRezervacijuSO = new ObradiRezervacijuSO();
+            rezervacija.Status = StatusRezervacije.OBRADJENA;
+            obradiRezervacijuSO.Template(rezervacija);
+
+            //ucitavanje rezervacija iz baze
+            VratiSveRezervacijeClanaSO vratiSveRezervacijeClanaSO = new VratiSveRezervacijeClanaSO();
+            vratiSveRezervacijeClanaSO.Template(new Rezervacija
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }
+            });
+
+            Rezervacija procitanaRezervacija = vratiSveRezervacijeClanaSO.Rezultat.Last();
+
+            //Assert
+            procitanaRezervacija.Should().NotBeNull();
+            procitanaRezervacija.IDRezervacija.Should().Be(rezervacija.IDRezervacija);
+            procitanaRezervacija.Status.Should().Be(rezervacija.Status);
+            procitanaRezervacija.Biblioteka.IDBiblioteka.Should().Be(rezervacija.Biblioteka.IDBiblioteka);
+            procitanaRezervacija.Clan.IDClan.Should().Be(rezervacija.Clan.IDClan);
+
+            //brisanje stavki i rezervacija
+            ObrisiStavkuKnjigeSO operacijaZaBrisanjeStavke = new ObrisiStavkuKnjigeSO();
+            operacijaZaBrisanjeStavke.Template(stavka1);
+            operacijaZaBrisanjeStavke.Template(stavka2);
+
+            ObrisiRezervacijeClanaSO operacijaZaBrisanjeRez = new ObrisiRezervacijeClanaSO();
+            operacijaZaBrisanjeRez.Template(rezervacija);
+
+            //brisanje unetih knjige
+            ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
+            operacijaZaBrisanje.Template(knjiga1);
+            operacijaZaBrisanje.Template(knjiga2);
+        }
     }
 }
