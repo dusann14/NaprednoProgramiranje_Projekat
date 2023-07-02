@@ -1,6 +1,6 @@
 namespace Server.Test
 {
-    public class UnitTest1
+    public class KontrolerTests
     {
         [Fact]
         public void Test1()
