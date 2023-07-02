@@ -2,6 +2,7 @@ using Common.Baza;
 using Common.Domen;
 using Common.SistemskeOperacije.AutorSO;
 using Common.SistemskeOperacije.BibliotekarSO;
+using Common.SistemskeOperacije.BibliotekaSO;
 using Common.SistemskeOperacije.ClanBibliotekaSO;
 using Common.SistemskeOperacije.ClanSO;
 using Common.SistemskeOperacije.KnjigaSO;
@@ -732,7 +733,7 @@ namespace Server.Test
         }
 
         [Fact]
-        public void Kontroler_VratiSveAutore_ReturnListAutor()
+        public void Kontroler_VratiAutore_ReturnListAutor()
         {
             //Act
             //dodavanje autora u biblioteku
@@ -766,6 +767,34 @@ namespace Server.Test
             procitanPoslednji.IDAutor.Should().Be(autor.IDAutor);
             procitanPoslednji.ImePrezime.Should().Be(autor.ImePrezime);
             procitanPoslednji.Biblioteka.IDBiblioteka.Should().Be(autor.Biblioteka.IDBiblioteka);
+        }
+
+        [Fact]
+        public void Kontroler_PrikaziSveBiblioteke_ReturnListBiblioteka()
+        {
+            //Act
+            //dodavanje biblioteke
+            Biblioteka biblioteka = new Biblioteka
+            {
+                Ime = "BibliotekaTest",
+                Adresa = "AdresaTest 1"
+            };
+
+            DodajBibliotekuSO dodajBibliotekuSO = new DodajBibliotekuSO();
+            dodajBibliotekuSO.Template(biblioteka);
+            biblioteka.IDBiblioteka = dodajBibliotekuSO.Rezultat;
+
+            //citanje svih biblioteka
+            VratiSveBibliotekeSO vratiSveBibliotekeSO = new VratiSveBibliotekeSO();
+            vratiSveBibliotekeSO.Template(new Biblioteka());
+
+            Biblioteka procitanaPoslednja = vratiSveBibliotekeSO.Rezultat.Last();
+
+            //Assert
+            procitanaPoslednja.Should().NotBeNull();
+            procitanaPoslednja.IDBiblioteka.Should().Be(biblioteka.IDBiblioteka);
+            procitanaPoslednja.Ime.Should().Be(biblioteka.Ime);
+            procitanaPoslednja.Adresa.Should().Be(biblioteka.Adresa);
         }
     }
 }
