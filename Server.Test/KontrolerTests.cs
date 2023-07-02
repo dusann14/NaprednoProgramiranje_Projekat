@@ -225,6 +225,88 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga1);
         }
 
+        [Fact]
+        public void Kontroler_ObrisiKnjigu()
+        {
+            //Act
+            //dodavanje nekoliko knjiga u bazu
+            Knjiga knjiga1 = new Knjiga
+            {
+                Naslov = "Naslov1",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            Knjiga knjiga2 = new Knjiga
+            {
+                Naslov = "Naslov2",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            Knjiga knjiga3 = new Knjiga
+            {
+                Naslov = "Naslov3",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 3
+                }
+            };
+
+            //upisivanje u bazu
+            DodajKnjiguSO operacijaZaDodavanje = new DodajKnjiguSO();
+
+            operacijaZaDodavanje.Template(knjiga1);
+            knjiga1.IDKnjiga = operacijaZaDodavanje.Rezultat;
+            operacijaZaDodavanje.Template(knjiga2);
+            knjiga2.IDKnjiga = operacijaZaDodavanje.Rezultat;
+            operacijaZaDodavanje.Template(knjiga3);
+            knjiga3.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            //brisanje jedne knjige iz baze
+            ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
+            operacijaZaBrisanje.Template(knjiga1);
+
+            //citanje ostaliha iz baze
+            VratiSveKnjigeSO operacijaZaCitanje = new VratiSveKnjigeSO();
+
+            operacijaZaCitanje.Template(new Knjiga
+            {
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }
+            });
+            
+            //Assert
+            operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
+            operacijaZaCitanje.Rezultat.Should().HaveCount(2);
+            operacijaZaCitanje.Rezultat.Should().NotContain(knjiga1);
+
+            //brisanje ostalih knjiga
+            operacijaZaBrisanje.Template(knjiga2);
+            operacijaZaBrisanje.Template(knjiga3);
+        }
+
 
     }
 }
