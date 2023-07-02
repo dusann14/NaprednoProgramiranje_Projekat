@@ -28,7 +28,7 @@ namespace Common.Domen
         [Browsable(false)]
         public string ImeTabele => "Autor";
         [Browsable(false)]
-        public string UbaciVrednosti => "";
+        public string UbaciVrednosti => $"'{ImePrezime}', {Biblioteka.IDBiblioteka}";
         [Browsable(false)]
         public string IdName => "IDAutor";
         [Browsable(false)]

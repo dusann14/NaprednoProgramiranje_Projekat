@@ -1,5 +1,6 @@
 using Common.Baza;
 using Common.Domen;
+using Common.SistemskeOperacije.AutorSO;
 using Common.SistemskeOperacije.BibliotekarSO;
 using Common.SistemskeOperacije.ClanBibliotekaSO;
 using Common.SistemskeOperacije.ClanSO;
@@ -13,12 +14,6 @@ namespace Server.Test
 {
     public class KontrolerTests
     {
-        private readonly IGenerickiRepo _generickiRepo;
-
-        public KontrolerTests()
-        {
-            _generickiRepo = new GenerickiRepo();
-        }
 
         [Fact]
         public void Kontroler_VratiKnjigeIzBiblioteke_ReturnListKnjiga()
@@ -734,6 +729,43 @@ namespace Server.Test
             ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
             operacijaZaBrisanje.Template(knjiga1);
             operacijaZaBrisanje.Template(knjiga2);
+        }
+
+        [Fact]
+        public void Kontroler_VratiSveAutore_ReturnListAutor()
+        {
+            //Act
+            //dodavanje autora u biblioteku
+            Autor autor = new Autor
+            {
+                ImePrezime = "Lav Tolstoj",
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }                
+            };
+
+            DodajAutoraSO operacijaZaDodavanjeAutora = new DodajAutoraSO();
+            operacijaZaDodavanjeAutora.Template(autor);
+            autor.IDAutor = operacijaZaDodavanjeAutora.Rezultat;
+
+            //citanje svih autora
+            VratiAutoreSO vratiAutoreSO = new VratiAutoreSO();
+            vratiAutoreSO.Template(new Autor
+            {
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }
+            });
+
+            Autor procitanPoslednji = vratiAutoreSO.Rezultat.Last();
+
+            //Assert
+            procitanPoslednji.Should().NotBeNull();
+            procitanPoslednji.IDAutor.Should().Be(autor.IDAutor);
+            procitanPoslednji.ImePrezime.Should().Be(autor.ImePrezime);
+            procitanPoslednji.Biblioteka.IDBiblioteka.Should().Be(autor.Biblioteka.IDBiblioteka);
         }
     }
 }
