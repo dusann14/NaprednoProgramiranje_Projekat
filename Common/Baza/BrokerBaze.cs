@@ -96,10 +96,7 @@ namespace Common.Baza
         {
             SqlCommand command = new SqlCommand("", connection, transakcija);
             command.CommandText = $"delete from {entitet.ImeTabele} where {entitet.WhereUslov}";
-            if (command.ExecuteNonQuery() != 1)
-            {
-                throw new Exception("Greska u bazi!");
-            }
+            command.ExecuteNonQuery();
         }
 
         public void Promeni(IEntitet entitet)

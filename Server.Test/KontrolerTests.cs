@@ -5,7 +5,9 @@ using Common.SistemskeOperacije.ClanBibliotekaSO;
 using Common.SistemskeOperacije.ClanSO;
 using Common.SistemskeOperacije.KnjigaSO;
 using Common.SistemskeOperacije.LoginSO;
+using Common.SistemskeOperacije.RezervacijaSO;
 using FluentAssertions;
+using System.Diagnostics;
 
 namespace Server.Test
 {
@@ -422,7 +424,7 @@ namespace Server.Test
         }
 
         [Fact]
-        public void Kontroler_PrikaziSveClanove()
+        public void Kontroler_PrikaziSveClanove_ReturnListClanBiblioteka()
         {
             //Act
             //dodavanje nekoliko clanstava           
@@ -477,7 +479,7 @@ namespace Server.Test
         }
 
         [Fact]
-        public void Kontroler_PrikaziClanovePoImenu()
+        public void Kontroler_PrikaziClanovePoImenu_ReturnListClanBiblioteka()
         {
             //Act
             //dodavanje nekoliko clanstava           
@@ -536,7 +538,7 @@ namespace Server.Test
         }
 
         [Fact]
-        public void Kontroler_VratiBibliotekeClana()
+        public void Kontroler_VratiBibliotekeClana_ReturnListClanBiblioteka()
         {
             //Act
             //dodavanje nekoliko clanstava           
@@ -629,6 +631,109 @@ namespace Server.Test
             clan.Lozinka.Should().Be("1234");
             clan.Prijavljen.Should().Be(true);
         }
+        
+        [Fact]
+        public void Kontroler_VratiSveRezervacije_ReturnListRezervacija()
+        {
+            //Act
+            //dodavanje knjige u bazu
+            Knjiga knjiga1 = new Knjiga
+            {
+                Naslov = "Naslov1",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
 
+            Knjiga knjiga2 = new Knjiga
+            {
+                Naslov = "Naslov2",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            //upisivanje u bazu
+            DodajKnjiguSO operacijaZaDodavanje = new DodajKnjiguSO();
+
+            operacijaZaDodavanje.Template(knjiga1);
+            knjiga1.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            operacijaZaDodavanje.Template(knjiga2);
+            knjiga2.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+
+            List<Stavka> stavke = new List<Stavka>();
+
+            Rezervacija rezervacija = new Rezervacija
+            {
+                DatumTrajanja = DateTime.Now,
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Status = StatusRezervacije.NEOBRADJENA,
+            };
+
+            Stavka stavka1 = new Stavka
+            {
+                Knjiga = knjiga1,
+                Rezervacija = rezervacija
+            };
+
+            Stavka stavka2 = new Stavka
+            {
+                Knjiga = knjiga2,
+                Rezervacija = rezervacija
+            };
+
+            stavke.Add(stavka1);
+
+            rezervacija.Stavke = stavke;
+
+            KreirajRezervacijuSO operacijaZaDodavanjeRez = new KreirajRezervacijuSO();
+            operacijaZaDodavanjeRez.Template(rezervacija);
+
+            stavke.Add(stavka2);
+
+            operacijaZaDodavanjeRez.Template(rezervacija);
+
+            VratiSveRezervacijeClanaSO operacijaZaCitanje = new VratiSveRezervacijeClanaSO();
+            operacijaZaCitanje.Template(rezervacija);
+
+            //Assert
+            operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
+            operacijaZaCitanje.Rezultat.Should().HaveCount(2);
+
+
+            //brisanje stavki i rezervacija
+            ObrisiStavkuKnjigeSO operacijaZaBrisanjeStavke = new ObrisiStavkuKnjigeSO();
+            operacijaZaBrisanjeStavke.Template(stavka1);
+            operacijaZaBrisanjeStavke.Template(stavka2);
+
+            ObrisiRezervacijeClanaSO operacijaZaBrisanjeRez = new ObrisiRezervacijeClanaSO();
+            operacijaZaBrisanjeRez.Template(rezervacija);
+
+            //brisanje unetih knjige
+            ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
+            operacijaZaBrisanje.Template(knjiga1);
+            operacijaZaBrisanje.Template(knjiga2);
+        }
     }
 }
