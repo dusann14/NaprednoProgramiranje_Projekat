@@ -534,5 +534,60 @@ namespace Server.Test
             operacijaZaOtkazivanje.Template(cb2);
         }
 
+        [Fact]
+        public void Kontroler_VratiBibliotekeClana()
+        {
+            //Act
+            //dodavanje nekoliko clanstava           
+            ClanBiblioteka cb1 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            ClanBiblioteka cb2 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 2
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            UclaniSeSO operacijaZaUclanjivanje = new UclaniSeSO();
+            operacijaZaUclanjivanje.Template(cb1);
+            operacijaZaUclanjivanje.Template(cb2);
+
+            //ucitavanje clanstava
+            VratiBibliotekeClanaSO operacijaZaCitanje = new VratiBibliotekeClanaSO();
+            operacijaZaCitanje.Template(new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                }
+            });
+
+            //Assert
+            operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
+            operacijaZaCitanje.Rezultat.Should().HaveCount(2);
+
+            //brisanje clanstava
+            OtkaziClanstvoSO operacijaZaOtkazivanje = new OtkaziClanstvoSO();
+            operacijaZaOtkazivanje.Template(cb1);
+            operacijaZaOtkazivanje.Template(cb2);
+        }
+
     }
 }
