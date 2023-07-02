@@ -16,7 +16,8 @@ namespace Common.Baza
 
         public BrokerBaze()
         {
-            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["psdb"].ConnectionString);
+            //connection = new SqlConnection(ConfigurationManager.ConnectionStrings["psdb"].ConnectionString);
+            connection = new SqlConnection("Data Source=DESKTOP-BP1HPT2;Initial Catalog=Projekat_Biblioteka;Integrated Security=true");
         }
 
         public void OtvoriKonekciju()
@@ -95,10 +96,7 @@ namespace Common.Baza
         {
             SqlCommand command = new SqlCommand("", connection, transakcija);
             command.CommandText = $"delete from {entitet.ImeTabele} where {entitet.WhereUslov}";
-            if (command.ExecuteNonQuery() != 1)
-            {
-                throw new Exception("Greska u bazi!");
-            }
+            command.ExecuteNonQuery();
         }
 
         public void Promeni(IEntitet entitet)
