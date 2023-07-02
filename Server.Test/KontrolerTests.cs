@@ -995,5 +995,67 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga1);
             operacijaZaBrisanje.Template(knjiga2);
         }
+
+        [Fact]
+        public void Kontroler_VratiKnjigePoNaslovu_ReturnListKnjiga()
+        {
+            //dodavanje knjige u bazu
+            Knjiga knjiga1 = new Knjiga
+            {
+                Naslov = "Naslov",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            Knjiga knjiga2 = new Knjiga
+            {
+                Naslov = "Naslov",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            //upisivanje u bazu
+            DodajKnjiguSO operacijaZaDodavanje = new DodajKnjiguSO();
+
+            operacijaZaDodavanje.Template(knjiga1);
+            knjiga1.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            operacijaZaDodavanje.Template(knjiga2);
+            knjiga2.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            //ucitavanje knjiga po naslovu
+            VratiKnjigePoNaslovuSO vratiKnjigePoNaslovuSO = new VratiKnjigePoNaslovuSO();
+            vratiKnjigePoNaslovuSO.Template(new Knjiga
+            {
+                Naslov = "naslov",
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }
+            });
+
+            //Assert
+            vratiKnjigePoNaslovuSO.Rezultat.Should().NotBeNullOrEmpty();
+            vratiKnjigePoNaslovuSO.Rezultat.Should().HaveCount(2);
+
+            //brisanje unetih knjige
+            ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
+            operacijaZaBrisanje.Template(knjiga1);
+            operacijaZaBrisanje.Template(knjiga2);
+        }
     }
 }
