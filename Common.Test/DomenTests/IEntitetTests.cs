@@ -44,9 +44,16 @@ namespace Common.Test.DomenTests
         public void Autor_UbaciVrednosti_ReturnString()
         {
             //Act
+            Autor autor = (Autor)_entitetAutor;
+            autor.ImePrezime = "ime_prezime";
+            autor.Biblioteka = new Biblioteka
+            {
+                IDBiblioteka = 1
+            };
             //Assert
             _entitetAutor.UbaciVrednosti.Should().NotBeNull();
-            _entitetAutor.UbaciVrednosti.Should().BeEmpty();
+            _entitetAutor.UbaciVrednosti.Should().Contain("ime_prezime");
+            _entitetAutor.UbaciVrednosti.Should().Contain("1");
         }
 
         [Fact]
@@ -120,9 +127,13 @@ namespace Common.Test.DomenTests
         public void Biblioteka_UbaciVrednosti_ReturnString()
         {
             //Act
+            Biblioteka biblioteka = (Biblioteka)_entitetBiblioteka;
+            biblioteka.Ime = "ime";
+            biblioteka.Adresa = "adresa";
             //Assert
             _entitetBiblioteka.UbaciVrednosti.Should().NotBeNull();
-            _entitetBiblioteka.UbaciVrednosti.Should().BeEmpty();
+            _entitetBiblioteka.UbaciVrednosti.Should().Contain("ime");
+            _entitetBiblioteka.UbaciVrednosti.Should().Contain("adresa");
         }
 
         [Fact]
