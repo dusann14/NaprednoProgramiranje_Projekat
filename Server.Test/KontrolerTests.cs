@@ -2,6 +2,7 @@ using Common.Baza;
 using Common.Domen;
 using Common.SistemskeOperacije.BibliotekarSO;
 using Common.SistemskeOperacije.ClanBibliotekaSO;
+using Common.SistemskeOperacije.ClanSO;
 using Common.SistemskeOperacije.KnjigaSO;
 using Common.SistemskeOperacije.LoginSO;
 using FluentAssertions;
@@ -587,6 +588,46 @@ namespace Server.Test
             OtkaziClanstvoSO operacijaZaOtkazivanje = new OtkaziClanstvoSO();
             operacijaZaOtkazivanje.Template(cb1);
             operacijaZaOtkazivanje.Template(cb2);
+        }
+
+        [Fact]
+        public void Kontroler_PromeniPodatkeClana()
+        {
+            //Act
+            //ucitavanje postojeceg clana iz baze
+            Clan clan = new Clan
+            {
+                KorisnickoIme = "dusann14",
+                Lozinka = "123456",
+                Uslov = $"c.KorisnickoIme = 'dusann14' and c.Lozinka = '123456'"
+            };
+
+            LoginSO so = new LoginSO();
+            so.Template(clan);
+
+            clan = (Clan)so.Rezultat;
+
+            //promena podataka
+            clan.ImePrezime = "Nikola Simic";
+            clan.KorisnickoIme = "nikola1";
+            clan.Lozinka = "1234";
+            clan.Prijavljen = true;
+            clan.DatumRodjenja = DateTime.Now;
+
+            PromeniPodatkeClanaSO operacijaZaPromenuPodataka = new PromeniPodatkeClanaSO();
+            operacijaZaPromenuPodataka.Template(clan);
+
+            //ponovno ucitavanje clana
+            so.Template(clan);
+
+            clan = (Clan)so.Rezultat;
+
+            //Assert
+            clan.Should().NotBeNull();
+            clan.ImePrezime.Should().Be("Nikola Simic");
+            clan.KorisnickoIme.Should().Be("nikola1");
+            clan.Lozinka.Should().Be("1234");
+            clan.Prijavljen.Should().Be(true);
         }
 
     }
