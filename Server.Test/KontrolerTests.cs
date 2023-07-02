@@ -8,6 +8,7 @@ using Common.SistemskeOperacije.ClanSO;
 using Common.SistemskeOperacije.KnjigaSO;
 using Common.SistemskeOperacije.LoginSO;
 using Common.SistemskeOperacije.RezervacijaSO;
+using Common.SistemskeOperacije.StavkaSO;
 using FluentAssertions;
 using System.Diagnostics;
 
@@ -895,6 +896,104 @@ namespace Server.Test
             otkaziClanstvoSO.Template(cb1);
         }
 
+        [Fact]
+        public void Kontroler_VratiStavkeRezervacije_ReturnListStavka()
+        {
+            //Act
+            //dodavanje knjige u bazu
+            Knjiga knjiga1 = new Knjiga
+            {
+                Naslov = "Naslov1",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
 
+            Knjiga knjiga2 = new Knjiga
+            {
+                Naslov = "Naslov2",
+                BrojPrimeraka = 100,
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Autor = new Autor
+                {
+                    IDAutor = 1
+                }
+            };
+
+            //upisivanje u bazu
+            DodajKnjiguSO operacijaZaDodavanje = new DodajKnjiguSO();
+
+            operacijaZaDodavanje.Template(knjiga1);
+            knjiga1.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            operacijaZaDodavanje.Template(knjiga2);
+            knjiga2.IDKnjiga = operacijaZaDodavanje.Rezultat;
+
+            List<Stavka> stavke = new List<Stavka>();
+
+            Rezervacija rezervacija = new Rezervacija
+            {
+                DatumTrajanja = DateTime.Now,
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                Status = StatusRezervacije.NEOBRADJENA,
+            };
+
+            Stavka stavka1 = new Stavka
+            {
+                Knjiga = knjiga1,
+                Rezervacija = rezervacija
+            };
+
+            Stavka stavka2 = new Stavka
+            {
+                Knjiga = knjiga2,
+                Rezervacija = rezervacija
+            };
+
+            stavke.Add(stavka1);
+            stavke.Add(stavka2);
+
+            rezervacija.Stavke = stavke;
+
+            KreirajRezervacijuSO operacijaZaDodavanjeRez = new KreirajRezervacijuSO();
+            operacijaZaDodavanjeRez.Template(rezervacija);
+
+            //ucitavanje stavki
+            VratiStavkeRezervacijeSO vratiStavkeRezervacijeSO = new VratiStavkeRezervacijeSO();
+            vratiStavkeRezervacijeSO.Template(stavka1);
+
+            //Assert
+            vratiStavkeRezervacijeSO.Rezultat.Should().NotBeNullOrEmpty();
+            vratiStavkeRezervacijeSO.Rezultat.Should().HaveCount(2);
+
+            //brisanje stavki i rezervacija
+            ObrisiStavkuKnjigeSO operacijaZaBrisanjeStavke = new ObrisiStavkuKnjigeSO();
+            operacijaZaBrisanjeStavke.Template(stavka1);
+            operacijaZaBrisanjeStavke.Template(stavka2);
+
+            ObrisiRezervacijeClanaSO operacijaZaBrisanjeRez = new ObrisiRezervacijeClanaSO();
+            operacijaZaBrisanjeRez.Template(rezervacija);
+
+            //brisanje unetih knjige
+            ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
+            operacijaZaBrisanje.Template(knjiga1);
+            operacijaZaBrisanje.Template(knjiga2);
+        }
     }
 }
