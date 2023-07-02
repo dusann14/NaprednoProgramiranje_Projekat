@@ -1,5 +1,7 @@
 using Common.Domen;
+using Common.SistemskeOperacije.BibliotekarSO;
 using Common.SistemskeOperacije.KnjigaSO;
+using Common.SistemskeOperacije.LoginSO;
 using FluentAssertions;
 
 namespace Server.Test
@@ -86,7 +88,7 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga2);
             operacijaZaBrisanje.Template(knjiga3);
         }
-
+        
         [Fact]
         public void Kontroler_VratiKnjigeIzBibliotekePoAutoru_ReturnListKnjiga()
         {
@@ -171,7 +173,7 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga2);
             operacijaZaBrisanje.Template(knjiga3);
         }
-
+        
         [Fact]
         public void Kontroler_DodajKnjigu()
         {
@@ -224,7 +226,7 @@ namespace Server.Test
             ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
             operacijaZaBrisanje.Template(knjiga1);
         }
-
+        
         [Fact]
         public void Kontroler_ObrisiKnjigu()
         {
@@ -306,7 +308,7 @@ namespace Server.Test
             operacijaZaBrisanje.Template(knjiga2);
             operacijaZaBrisanje.Template(knjiga3);
         }
-
+        
         [Fact]
         public void Kontroler_PromeniKnjigu()
         {
@@ -334,6 +336,8 @@ namespace Server.Test
 
             //promena knjige u bazi
             knjiga1.Naslov = "neki drugi naslov";
+            knjiga1.BrojPrimeraka = 120;
+            knjiga1.Autor.IDAutor = 3;
 
             PromeniKnjiguSO o = new PromeniKnjiguSO();
             o.Template(knjiga1);
@@ -355,10 +359,57 @@ namespace Server.Test
             operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
             operacijaZaCitanje.Rezultat.Should().HaveCount(1);
             procitanaKnjiga.Naslov.Should().Be("neki drugi naslov");
+            procitanaKnjiga.BrojPrimeraka.Should().Be(120);
+            procitanaKnjiga.Autor.IDAutor.Should().Be(3);
 
             //brisanje unete knjige
             ObrisiKnjiguSO operacijaZaBrisanje = new ObrisiKnjiguSO();
             operacijaZaBrisanje.Template(knjiga1);
+        }
+        
+        [Fact]
+        public void Kontroler_PromeniPodatkeBibliotekara()
+        {
+            //Act
+            //ucitavanje postojeceg bibliotekara iz baze
+            Bibliotekar bibliotekar = new Bibliotekar
+            {
+                KorisnickoIme = "trivic99",
+                Lozinka = "123456",
+                Uslov = $"bib.KorisnickoIme = 'trivic99' and bib.Lozinka = '123456'"
+            };
+
+            LoginSO so = new LoginSO();
+            so.Template(bibliotekar);
+
+            bibliotekar = (Bibliotekar)so.Rezultat;
+
+            //promena podataka
+            bibliotekar.ImePrezime = "Nikola Simic";
+            bibliotekar.KorisnickoIme = "nikola1";
+            bibliotekar.Lozinka = "1234";
+            bibliotekar.Prijavljen = true;
+            bibliotekar.Biblioteka = new Biblioteka
+            {
+                IDBiblioteka = 2
+            };
+            bibliotekar.DatumRodjenja = DateTime.Now;
+
+            PromeniPodatkeBibliotekaraSO operacijaZaPromenuPodataka = new PromeniPodatkeBibliotekaraSO();
+            operacijaZaPromenuPodataka.Template(bibliotekar);
+
+            //ponovno ucitavanje bibliotekara
+            so.Template(bibliotekar);
+
+            bibliotekar = (Bibliotekar)so.Rezultat;
+
+            //Assert
+            bibliotekar.Should().NotBeNull();
+            bibliotekar.ImePrezime.Should().Be("Nikola Simic");
+            bibliotekar.KorisnickoIme.Should().Be("nikola1");
+            bibliotekar.Lozinka.Should().Be("1234");
+            bibliotekar.Biblioteka.IDBiblioteka.Should().Be(2);
+            bibliotekar.Prijavljen.Should().Be(true);
         }
 
 
