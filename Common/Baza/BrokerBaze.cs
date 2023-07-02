@@ -16,7 +16,8 @@ namespace Common.Baza
 
         public BrokerBaze()
         {
-            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["psdb"].ConnectionString);
+            //connection = new SqlConnection(ConfigurationManager.ConnectionStrings["psdb"].ConnectionString);
+            connection = new SqlConnection("Data Source=DESKTOP-BP1HPT2;Initial Catalog=Projekat_Biblioteka;Integrated Security=true");
         }
 
         public void OtvoriKonekciju()
