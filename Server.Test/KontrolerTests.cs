@@ -796,5 +796,63 @@ namespace Server.Test
             procitanaPoslednja.Ime.Should().Be(biblioteka.Ime);
             procitanaPoslednja.Adresa.Should().Be(biblioteka.Adresa);
         }
+
+        [Fact]
+        public void Kontroler_OtkaziClanstvo()
+        {
+            //Act
+            //dodavanje nekoliko clanstava           
+            ClanBiblioteka cb1 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            ClanBiblioteka cb2 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 2
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            UclaniSeSO operacijaZaUclanjivanje = new UclaniSeSO();
+            operacijaZaUclanjivanje.Template(cb1);
+            operacijaZaUclanjivanje.Template(cb2);
+
+            //otkazivanje clanstva
+            OtkaziClanstvoSO otkaziClanstvoSO = new OtkaziClanstvoSO();
+            otkaziClanstvoSO.Template(cb2);
+
+            //ucitavanje clanstava
+            VratiBibliotekeClanaSO operacijaZaCitanje = new VratiBibliotekeClanaSO();
+            operacijaZaCitanje.Template(new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                }
+            });
+
+            //Assert
+            operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
+            operacijaZaCitanje.Rezultat.Should().HaveCount(1);
+            operacijaZaCitanje.Rezultat.Should().NotContain(cb2);
+
+            //brisanje clanstava
+            otkaziClanstvoSO.Template(cb1);
+        }
     }
 }
