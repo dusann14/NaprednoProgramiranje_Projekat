@@ -1,5 +1,7 @@
+using Common.Baza;
 using Common.Domen;
 using Common.SistemskeOperacije.BibliotekarSO;
+using Common.SistemskeOperacije.ClanBibliotekaSO;
 using Common.SistemskeOperacije.KnjigaSO;
 using Common.SistemskeOperacije.LoginSO;
 using FluentAssertions;
@@ -8,6 +10,12 @@ namespace Server.Test
 {
     public class KontrolerTests
     {
+        private readonly IGenerickiRepo _generickiRepo;
+
+        public KontrolerTests()
+        {
+            _generickiRepo = new GenerickiRepo();
+        }
 
         [Fact]
         public void Kontroler_VratiKnjigeIzBiblioteke_ReturnListKnjiga()
@@ -412,6 +420,60 @@ namespace Server.Test
             bibliotekar.Prijavljen.Should().Be(true);
         }
 
+        [Fact]
+        public void Kontroler_PrikaziSveClanove()
+        {
+            //Act
+            //dodavanje nekoliko clanstava           
+            ClanBiblioteka cb1 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 4
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            ClanBiblioteka cb2 = new ClanBiblioteka
+            {
+                Clan = new Clan
+                {
+                    IDClan = 5
+                },
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                },
+                DatumUclanjenja = DateTime.Now
+            };
+
+            UclaniSeSO operacijaZaUclanjivanje = new UclaniSeSO();
+            operacijaZaUclanjivanje.Template(cb1);
+            operacijaZaUclanjivanje.Template(cb2);
+
+            //ucitavanje clanstava
+            VratiSveClanoveIzBibliotekeSO operacijaZaCitanje = new VratiSveClanoveIzBibliotekeSO();
+            operacijaZaCitanje.Template(new ClanBiblioteka
+            {
+                Biblioteka = new Biblioteka
+                {
+                    IDBiblioteka = 1
+                }
+            });
+
+            //Assert
+            operacijaZaCitanje.Rezultat.Should().NotBeNullOrEmpty();
+            operacijaZaCitanje.Rezultat.Should().HaveCount(2);
+
+            //brisanje clanstava
+            OtkaziClanstvoSO operacijaZaOtkazivanje = new OtkaziClanstvoSO();
+            operacijaZaOtkazivanje.Template(cb1);
+            operacijaZaOtkazivanje.Template(cb2);
+        }
 
     }
 }
