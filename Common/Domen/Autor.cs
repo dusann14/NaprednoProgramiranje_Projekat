@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
@@ -28,6 +29,7 @@ namespace Common.Domen
         /// <summary>
         /// <see cref="Domen.Bibliotekar"/> Pripadajuća biblioteka autora.
         /// </summary>
+        [JsonIgnore]
         public Biblioteka Biblioteka { get; set; }
 
         /// <summary>
@@ -43,24 +45,33 @@ namespace Common.Domen
         /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
         /// </summary>
         [Browsable(false)]
+        [JsonIgnore]
         public string Uslov { get; set; }
 
 
         [Browsable(false)]
+        [JsonIgnore]
         public string ImeTabele => "Autor";
         [Browsable(false)]
+        [JsonIgnore]
         public string UbaciVrednosti => $"'{ImePrezime}', {Biblioteka.IDBiblioteka}";
         [Browsable(false)]
+        [JsonIgnore]
         public string IdName => "IDAutor";
         [Browsable(false)]
+        [JsonIgnore]
         public string JoinUslov => "join Biblioteka b on (b.IDBiblioteka = a.IDBiblioteka)";
         [Browsable(false)]
+        [JsonIgnore]
         public string Alias => "a";
         [Browsable(false)]
+        [JsonIgnore]
         public string Select => "*";
         [Browsable(false)]
+        [JsonIgnore]
         public string WhereUslov => $"{Uslov}";
         [Browsable(false)]
+        [JsonIgnore]
         public string UpdateVrednosti => "";
 
         public IEntitet VratiJednog(SqlDataReader reader)

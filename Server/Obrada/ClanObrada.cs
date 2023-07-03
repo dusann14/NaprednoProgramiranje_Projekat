@@ -1,5 +1,6 @@
 ﻿using Common.Domen;
 using Common.Transfer;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,6 +86,9 @@ namespace Server.Obrada
                             odgovor.Uspesno = false;
                             odgovor.Greska = e.Message;
                         }
+                        //serijalizacija objekta u json-u
+                        string jsonStr = JsonConvert.SerializeObject(odgovor.Rezultat);
+                        Console.WriteLine(jsonStr);
                         formatter.Serialize(tok, odgovor);
                     }
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
@@ -24,6 +25,7 @@ namespace Common.Domen
         /// <see cref="Rezervacija"/> Rezervacija stavke.
         /// </summary>
         [Browsable(false)]
+        [JsonIgnore]
         public Rezervacija Rezervacija { get; set; }
 
         /// <summary>
@@ -35,24 +37,33 @@ namespace Common.Domen
         /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
         /// </summary>
         [Browsable(false)]
+        [JsonIgnore]
         public string Uslov { get; set; }
 
 
         [Browsable(false)]
+        [JsonIgnore]
         public string ImeTabele => "Stavka";
         [Browsable(false)]
+        [JsonIgnore]
         public string UbaciVrednosti => $"{Rezervacija.IDRezervacija}, {Knjiga.IDKnjiga}";
         [Browsable(false)]
+        [JsonIgnore]
         public string IdName => "IDStavka";
         [Browsable(false)]
+        [JsonIgnore]
         public string JoinUslov => "join Rezervacija r on (s.IDRezervacija = r.IDRezervacija) join clan c on (c.IDClan = r.IDClan) join Knjiga k on (s.IDKnjiga = k.IDKnjiga) join Autor a on (a.IDAutor = k.IDAutor) join Biblioteka b on (b.IDBiblioteka = k.IDBiblioteka)";
         [Browsable(false)]
+        [JsonIgnore]
         public string Alias => "s";
         [Browsable(false)]
+        [JsonIgnore]
         public string Select => "*";
         [Browsable(false)]
+        [JsonIgnore]
         public string WhereUslov => $"{Uslov}";
         [Browsable(false)]
+        [JsonIgnore]
         public string UpdateVrednosti => throw new NotImplementedException();
 
         public IEntitet VratiJednog(SqlDataReader reader)

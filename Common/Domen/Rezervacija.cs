@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,24 +51,33 @@ namespace Common.Domen
         /// Uslov za upit u bazi podataka kao string. Ne prikazuje se na korisnickom interfejsu.
         /// </summary>
         [Browsable(false)]
+        [JsonIgnore]
         public string Uslov { get; set; }
 
 
         [Browsable(false)]
+        [JsonIgnore]
         public string ImeTabele => "Rezervacija";
         [Browsable(false)]
+        [JsonIgnore]
         public string UbaciVrednosti => $"'{DatumTrajanja}', {Clan.IDClan}, {Biblioteka.IDBiblioteka}, {(int)Status}";
         [Browsable(false)]
+        [JsonIgnore]
         public string IdName => "IDRezervacija";
         [Browsable(false)]
+        [JsonIgnore]
         public string JoinUslov => "join clan c on (c.IDClan = r.IDClan) join biblioteka b on (b.IDBiblioteka = r.IDBiblioteka) join StatusRezervacije sr on (sr.IDStatus = r.IDStatus)";
         [Browsable(false)]
+        [JsonIgnore]
         public string Alias => "r";
         [Browsable(false)]
+        [JsonIgnore]
         public string Select => "*";
         [Browsable(false)]
+        [JsonIgnore]
         public string WhereUslov => $"{Uslov}";
         [Browsable(false)]
+        [JsonIgnore]
         public string UpdateVrednosti => $"DatumTrajanja = '{DatumTrajanja}', IDClan = {Clan.IDClan}, IDBiblioteka = {Biblioteka.IDBiblioteka}, IDStatus = {(int)Status}";
 
         public IEntitet VratiJednog(SqlDataReader reader)

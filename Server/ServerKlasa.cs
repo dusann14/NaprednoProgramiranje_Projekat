@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Server
 {
@@ -153,6 +154,11 @@ namespace Server
             List<IEntitet> entitetiZaProveru = (List<IEntitet>)zahtev.Objekat;
             prijavljeniKorisnik = Kontroler.Kontroler.Instance.Login(entitetiZaProveru);
             Odgovor odgovor = new Odgovor { Rezultat = prijavljeniKorisnik };
+
+            //serijalizacija objekta u json-u
+            string jsonStr = JsonConvert.SerializeObject(odgovor.Rezultat);
+            Console.WriteLine(jsonStr);
+
             sender.Posalji(odgovor);
         }
 
