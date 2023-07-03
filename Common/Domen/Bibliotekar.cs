@@ -23,7 +23,20 @@ namespace Common.Domen
         /// <summary>
         /// Ime i prezime bibliotekara kao string.
         /// </summary>
-        public string ImePrezime { get; set; }
+        public string ImePrezime
+        {
+            get { return ImePrezime; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Null ili prazan string");
+
+                if (!value.Contains(" "))
+                    throw new FormatException("Niste uneli ime i prezime");
+
+                ImePrezime = value;
+            }
+        }
 
         /// <summary>
         /// Korisnicko ime bibliotekara kao string.
@@ -43,7 +56,17 @@ namespace Common.Domen
         /// <summary>
         /// Datum rodjenja bibliotekara kao DateTime.
         /// </summary>
-        public DateTime DatumRodjenja { get; set; }
+        public DateTime DatumRodjenja
+        {
+            get { return DatumRodjenja; }
+            set
+            {
+                if(value > DateTime.Now) 
+                    throw new FormatException("Datum mora biti u proslosti");
+
+                DatumRodjenja = value;
+            }
+        }
 
         /// <summary>
         /// <see cref="Domen.Biblioteka"/> Oznacava pripadajucu biblioteku bibliotekara.

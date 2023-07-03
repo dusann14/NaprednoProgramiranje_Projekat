@@ -24,7 +24,17 @@ namespace Common.Domen
         /// <summary>
         /// Datum do kada vazi rezervacija kao DateTime.
         /// </summary>
-        public DateTime DatumTrajanja { get; set; }
+        public DateTime DatumTrajanja
+        {
+            get { return DatumTrajanja; }
+            set
+            {
+                if (value < DateTime.Now)
+                    throw new FormatException("Datum mora biti u buducnosti");
+
+                DatumTrajanja = value;
+            }
+        }
 
         /// <summary>
         /// <see cref="Domen.Clan"/> Clan koji je napravi rezervaciju.

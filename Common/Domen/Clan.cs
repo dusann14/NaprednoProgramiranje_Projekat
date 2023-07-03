@@ -33,7 +33,20 @@ namespace Common.Domen
         /// <summary>
         /// Ime i prezime clana kao string.
         /// </summary>
-        public string ImePrezime { get; set; }
+        public string ImePrezime
+        {
+            get { return ImePrezime; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Null ili prazan string");
+
+                if (!value.Contains(" "))
+                    throw new FormatException("Niste uneli ime i prezime");
+
+                ImePrezime = value;
+            }
+        }
 
         /// <summary>
         /// Pokazuje da li je clan trenutno prijavljen ili nije kao bool.
@@ -43,7 +56,15 @@ namespace Common.Domen
         /// <summary>
         /// Datum rodjenja clana kao DateTime.
         /// </summary>
-        public DateTime DatumRodjenja { get; set; }
+        public DateTime DatumRodjenja
+        {
+            get { return DatumRodjenja; }
+            set
+            {
+                if (value > DateTime.Now)
+                    throw new FormatException("Datum mora biti u proslosti");
+            }
+        }
 
         /// <summary>
         /// Prikazuje objekat klase Clan kao njegovo ime i prezime. Kada se ispisuje objekat klase Clan ispisuje se njegovo ime i prezime.

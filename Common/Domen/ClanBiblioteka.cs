@@ -17,7 +17,17 @@ namespace Common.Domen
         /// <summary>
         /// Datum uclanjenja clana u biblioteku kao DateTime.
         /// </summary>
-        public DateTime DatumUclanjenja { get; set; }
+        public DateTime DatumUclanjenja
+        {
+            get { return DatumUclanjenja; }
+            set
+            {
+                if (value > DateTime.Now)
+                    throw new FormatException("Datum mora biti u proslosti");
+
+                DatumUclanjenja = value;
+            }
+        }
 
         /// <summary>
         /// <see cref="Domen.Biblioteka"/> Biblioteka u koju je uclanjen clan.
