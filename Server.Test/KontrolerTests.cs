@@ -10,6 +10,7 @@ using Common.SistemskeOperacije.LoginSO;
 using Common.SistemskeOperacije.RezervacijaSO;
 using Common.SistemskeOperacije.StavkaSO;
 using FluentAssertions;
+using Server.Test.DodateSO;
 using System.Diagnostics;
 
 namespace Server.Test

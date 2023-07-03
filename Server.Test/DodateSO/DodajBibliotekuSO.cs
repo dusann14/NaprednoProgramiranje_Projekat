@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Test
+namespace Server.Test.DodateSO
 {
     public class DodajBibliotekuSO : SistemskaOperacijaBaza
     {
