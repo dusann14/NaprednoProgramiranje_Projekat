@@ -27,6 +27,14 @@ namespace Common.Test.DomenTests
             _clanBiblioteka.DatumUclanjenja.Should().BeBefore(1.January(2030));
         }
 
+
+        [Fact]
+        public void ClanBiblioteka_SetDatumUclanjenjaNijeDobarUnos_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.FormatException>(() => _clanBiblioteka.DatumUclanjenja = 1.January(2010));
+        }
+
         [Fact]
         public void ClanBiblioteka_SetBiblioteka()
         {

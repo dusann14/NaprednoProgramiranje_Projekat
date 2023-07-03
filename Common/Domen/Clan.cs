@@ -33,6 +33,8 @@ namespace Common.Domen
         /// <summary>
         /// Ime i prezime clana kao string.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Ako se unese null ili prazan string</exception>
+        /// <exception cref="FormatException">Ako se ne unese i ime i prezime</exception>
         public string ImePrezime
         {
             get { return ImePrezime; }
@@ -41,7 +43,9 @@ namespace Common.Domen
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException("Null ili prazan string");
 
-                if (!value.Contains(" "))
+                string[] niz = value.Split(' ');
+
+                if (!(niz.Length < 2))
                     throw new FormatException("Niste uneli ime i prezime");
 
                 ImePrezime = value;
@@ -56,6 +60,7 @@ namespace Common.Domen
         /// <summary>
         /// Datum rodjenja clana kao DateTime.
         /// </summary>
+        /// <exception cref="FormatException">Ako se unese datum u buducnosti</exception>
         public DateTime DatumRodjenja
         {
             get { return DatumRodjenja; }
@@ -63,6 +68,8 @@ namespace Common.Domen
             {
                 if (value > DateTime.Now)
                     throw new FormatException("Datum mora biti u proslosti");
+
+                DatumRodjenja = value;
             }
         }
 

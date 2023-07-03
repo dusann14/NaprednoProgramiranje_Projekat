@@ -17,6 +17,7 @@ namespace Common.Domen
         /// <summary>
         /// Datum uclanjenja clana u biblioteku kao DateTime.
         /// </summary>
+        /// <exception cref="FormatException">Ako se unese datum u buducnosti</exception>
         public DateTime DatumUclanjenja
         {
             get { return DatumUclanjenja; }

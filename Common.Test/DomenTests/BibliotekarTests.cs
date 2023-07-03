@@ -29,14 +29,32 @@ namespace Common.Test.DomenTests
             _bibliotekar.IDBibliotekar.Should().Be(1);
         }
 
-        [Fact]
-        public void Bibliotekar_SetImePrezime()
+        [Theory]
+        [InlineData("Dusan Stoimenovic", "Dusan Stoimenovic")]
+        [InlineData("Marin Cvetkovic", "Martin Cvetkovic")]
+        [InlineData("Stefan Ristic", "Stefan Ristic")]
+        public void Bibliotekar_SetImePrezime(string imePrezime, string ocekivan)
         {
             //Act
-            _bibliotekar.ImePrezime = "Dusan Stoimenovic";
+            _bibliotekar.ImePrezime = imePrezime;
             //Assert
             _bibliotekar.ImePrezime.Should().NotBeNullOrWhiteSpace();
-            _bibliotekar.ImePrezime.Should().Be("Dusan Stoimenovic");
+            _bibliotekar.ImePrezime.Should().Be(ocekivan);
+        }
+
+        [Fact]
+        public void Bibliotekar_SetImePrezimeNijeDobarUnos_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.ArgumentNullException>(() => _bibliotekar.ImePrezime = null);
+            Assert.Throws<System.ArgumentNullException>(() => _bibliotekar.ImePrezime = "");
+        }
+
+        [Fact]
+        public void Bibliotekar_SetImePrezimeNisuUnetiIImeIPrezime_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.FormatException>(() => _bibliotekar.ImePrezime = "Dusan");
         }
 
         [Fact]
@@ -77,6 +95,13 @@ namespace Common.Test.DomenTests
             //Assert
             _bibliotekar.DatumRodjenja.Should().BeAfter(1.January(2010));
             _bibliotekar.DatumRodjenja.Should().BeBefore(1.January(2030));
+        }
+
+        [Fact]
+        public void Bibliotekar_SetDatumRodjenjaNijeDobarUnos_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.FormatException>(() => _bibliotekar.DatumRodjenja = 1.January(2030));
         }
 
         [Fact]

@@ -29,14 +29,32 @@ namespace Common.Test.DomenTests
         }
 
 
-        [Fact]
-        public void Autor_SetImePrezime()
+        [Theory]
+        [InlineData("Dusan Stoimenovic", "Dusan Stoimenovic")]
+        [InlineData("Marin Cvetkovic", "Martin Cvetkovic")]
+        [InlineData("Stefan Ristic", "Stefan Ristic")]
+        public void Autor_SetImePrezime(string imePrezime, string ocekivan)
         {
             //Act
-            _autor.ImePrezime = "Dusan Stoimenovic";
+            _autor.ImePrezime = imePrezime;
             //Assert
             _autor.ImePrezime.Should().NotBeNullOrWhiteSpace();
-            _autor.ImePrezime.Should().Be("Dusan Stoimenovic");
+            _autor.ImePrezime.Should().Be(ocekivan);
+        }
+
+        [Fact]
+        public void Autor_SetImePrezimeNijeDobarUnos_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.ArgumentNullException>(() => _autor.ImePrezime = null);
+            Assert.Throws<System.ArgumentNullException>(() => _autor.ImePrezime = "");
+        }
+
+        [Fact]
+        public void Autor_SetImePrezimeNisuUnetiIImeIPrezime_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.FormatException>(() => _autor.ImePrezime = "Dusan");
         }
 
         [Fact]

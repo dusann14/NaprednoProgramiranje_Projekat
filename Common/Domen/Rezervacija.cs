@@ -24,6 +24,7 @@ namespace Common.Domen
         /// <summary>
         /// Datum do kada vazi rezervacija kao DateTime.
         /// </summary>
+        /// <exception cref="FormatException">Ako se unese datum u proslosti</exception>
         public DateTime DatumTrajanja
         {
             get { return DatumTrajanja; }

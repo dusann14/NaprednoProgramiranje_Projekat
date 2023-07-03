@@ -32,13 +32,20 @@ namespace Common.Test.DomenTests
         }
 
         [Fact]
-        public void Clan_SetDatumRodjenja()
+        public void Rezervacija_SetDatumTrajanja()
         {
             //Act
             _rezervacija.DatumTrajanja = DateTime.Now;
             //Assert
             _rezervacija.DatumTrajanja.Should().BeAfter(1.January(2010));
             _rezervacija.DatumTrajanja.Should().BeBefore(1.January(2030));
+        }
+
+        [Fact]
+        public void Rezervacija_SetDatumTrajanjaNijeDobarUnos_ThrowsException()
+        {
+            //Act and assert
+            Assert.Throws<System.FormatException>(() => _rezervacija.DatumTrajanja = 1.January(2010));
         }
 
         [Fact]
