@@ -24,7 +24,25 @@ namespace Common.Domen
         /// <summary>
         /// Ime i prezime autora kao string.
         /// </summary>
-        public string ImePrezime { get; set; }
+        /// <exception cref="ArgumentNullException">Ako se unese null ili prazan string</exception>
+        /// <exception cref="FormatException">Ako se ne unese i ime i prezime</exception>
+
+        public string ImePrezime
+        {
+            get { return ImePrezime; }
+            set
+            {
+                if(string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Null ili prazan string");
+
+                string[] niz = value.Split(' ');
+
+                if (!(niz.Length < 2))
+                    throw new FormatException("Niste uneli i ime i prezime");
+
+                ImePrezime = value;
+            }
+        }
 
         /// <summary>
         /// <see cref="Domen.Bibliotekar"/> Pripadajuća biblioteka autora.

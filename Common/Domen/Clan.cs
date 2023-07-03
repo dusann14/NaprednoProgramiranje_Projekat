@@ -34,7 +34,24 @@ namespace Common.Domen
         /// <summary>
         /// Ime i prezime clana kao string.
         /// </summary>
-        public string ImePrezime { get; set; }
+        /// <exception cref="ArgumentNullException">Ako se unese null ili prazan string</exception>
+        /// <exception cref="FormatException">Ako se ne unese i ime i prezime</exception>
+        public string ImePrezime
+        {
+            get { return ImePrezime; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Null ili prazan string");
+
+                string[] niz = value.Split(' ');
+
+                if (!(niz.Length < 2))
+                    throw new FormatException("Niste uneli ime i prezime");
+
+                ImePrezime = value;
+            }
+        }
 
         /// <summary>
         /// Pokazuje da li je clan trenutno prijavljen ili nije kao bool.
@@ -44,7 +61,18 @@ namespace Common.Domen
         /// <summary>
         /// Datum rodjenja clana kao DateTime.
         /// </summary>
-        public DateTime DatumRodjenja { get; set; }
+        /// <exception cref="FormatException">Ako se unese datum u buducnosti</exception>
+        public DateTime DatumRodjenja
+        {
+            get { return DatumRodjenja; }
+            set
+            {
+                if (value > DateTime.Now)
+                    throw new FormatException("Datum mora biti u proslosti");
+
+                DatumRodjenja = value;
+            }
+        }
 
         /// <summary>
         /// Prikazuje objekat klase Clan kao njegovo ime i prezime. Kada se ispisuje objekat klase Clan ispisuje se njegovo ime i prezime.
